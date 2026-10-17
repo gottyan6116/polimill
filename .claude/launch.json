@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "polimill-timeline",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3010"],
+      "port": 3010
+    }
+  ]
+}
