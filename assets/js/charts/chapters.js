@@ -54,10 +54,9 @@
   }
 
   function renderS02Body() {
-    const later = D.milestones.filter(m => m.chapter > 1 && m.headline.includes('調達'));
     el('s02-body').innerHTML = `
       <p>最初のプロダクトは行政向けではなく、市民が社会課題に投票する政策提言SNS「Surfvote」だった。2022年末には投票結果を3省へ提出し、奈良県田原本町との「Surfvoteローカル」も始まる。この時期の調達は累計約1.3億円まで。</p>
-      <p class="src">その後の累計調達（マイルストーンより）：${later.map(m => `${dot(m.date)} ${ext(m.url, m.headline)}`).join('　／　')}</p>`;
+`;
   }
 
   // ---------- chapter 2: wall of issues + milestone strip ----------
@@ -70,7 +69,7 @@
     const y = d3.scaleLinear().domain([0, 32]).range([ih, 0]);
     const svg = svgFor(node, W, H, '第2章の月別Surfvote記事数とマイルストーン');
     const g = svg.append('g').attr('transform', `translate(${m.l},${m.t})`);
-    g.append('rect').attr('x', 0).attr('width', iw).attr('y', y(30)).attr('height', y(20) - y(30)).attr('fill', '#67C59F').attr('fill-opacity', 0.16);
+    g.append('rect').attr('x', 0).attr('width', iw).attr('y', y(30)).attr('height', y(20) - y(30)).attr('fill', '#4A4A4A').attr('fill-opacity', 0.08);
     g.append('text').attr('class', 'lbl-s').attr('x', iw).attr('y', y(30) - 3).attr('text-anchor', 'end').text('月20〜30本の帯');
     const bars = g.append('g').selectAll('rect').data(ch2Months).join('rect').attr('fill', '#4A4A4A')
       .attr('x', r => x(r.k)).attr('width', x.bandwidth()).attr('y', r => y(r.Surfvote)).attr('height', r => ih - y(r.Surfvote));
@@ -84,9 +83,9 @@
     msl.forEach(mm => {
       const px = pos(mm.date);
       lift = px - prevX < 14 ? lift + 1 : 0; prevX = px;
-      g.append('line').attr('x1', px).attr('x2', px).attr('y1', -10 - lift * 12).attr('y2', ih).attr('stroke', '#2F7D5B').attr('stroke-width', 1);
+      g.append('line').attr('x1', px).attr('x2', px).attr('y1', -10 - lift * 12).attr('y2', ih).attr('stroke', '#111').attr('stroke-width', 1);
       const k = g.append('g').datum(mm).attr('transform', `translate(${px},${-16 - lift * 12})`);
-      k.append('circle').attr('r', 7).attr('fill', '#fff').attr('stroke', '#2F7D5B');
+      k.append('circle').attr('r', 7).attr('fill', '#fff').attr('stroke', '#111');
       k.append('text').attr('text-anchor', 'middle').attr('y', 3.5).style('font-size', '9px').attr('fill', '#111').text(msIndex.get(mm));
       bindTip(k, d => `<b>${fmtJ(parse(d.date))}</b><br>${esc(d.headline)}<p class="src">出典：${ext(d.url, d.source)}</p>`);
     });
@@ -111,7 +110,7 @@
     el('s03-body').innerHTML = `
       <p>${fmtYM(ch2Months[0].m)}〜${fmtYM(ch2Months[ch2Months.length - 1].m)}の${ch2Months.length}か月で、Surfvoteの記事は${svPeriod.length}件。全テーマの発信が月20本を超えた月は${totals20.length}か月（うちSurfvote単独で20本以上が${over20.length}か月）。給食費、ランドセル、PTA、万博まで、投票の論点は生活の細部に及んだ。</p>
       <p>一方、2023年7月にはAIアシスタント「ツクヨミ」をSurfvoteに載せ、2024年3月には省庁・自治体向けAI「DIGITAL COMMONS」を無料で出している。行政向けAIへの転換は、この期間の後半に準備されていた。</p>
-      <p class="src">壁の記事は、この期間のSurfvote記事${svPeriod.length}件を日付順に並べ、等間隔に${WALL_N}件を抽出したもの（無作為抽出ではない）。上部の番号は下のタイムラインの番号に対応。</p>`;
+`;
   }
 
   // ---------- chapter 3: process steps ----------
@@ -120,9 +119,8 @@
       <li class="${s.tag ? 'el' : ''}">
         <span class="dot"></span>
         <time>${esc(s.when)}</time>
-        <span class="st-label">${esc(s.label)}</span>
-        ${s.tag ? `<span class="tag ${s.tag[1]}">${esc(s.tag[0])}</span>` : ''}
-        <span class="src">${s.note ? esc(s.note) + '　' : ''}出典：${ext(s.m.url, s.m.source)}</span>
+        <span class="st-label">${esc(s.label)}${s.note ? PM.fnRef('ch3', 1) : ''}${PM.srcIcon(s.m.url, s.m.source, PM.dot(s.m.date))}</span>
+        ${s.tag ? `<span class="tag ${s.tag[1]}">${esc(s.tag[0])}</span>` : ''}${s.note ? PM.conf('est') : ''}
       </li>`).join('');
     const why = ms('2024-11-20').why;
     el('steps-sum').innerHTML = `<b>2024年11月、研修・協定・無料枠の3要素が揃う。</b>　マイルストーンの記述では「${esc(why)}」。以後の拡大はこの型の繰り返しになる。`;
@@ -131,8 +129,12 @@
     const both = D.news.find(n => n.title.includes('伊藤あやめ') && n.title.includes('谷口野乃花'));
     el('s04-body').innerHTML = `
       <p>2024年3月の「DIGITAL COMMONS」無料提供を経て、8月にQommonsAIのプレビュー版を約50の自治体・省庁へ。9月に現地研修、10月にプロダクト版、11月に初の包括連携協定と「100アカウントまで無料」。製品と同時に、売り方の型まで4か月ほどで揃えている。</p>
-      <p class="aside-note">注記：代表表記が2025年4月前後に横田えり氏→伊藤あやめ氏・谷口野乃花氏へ（リリース文面上の表記による）。<br>
-      <span class="src">参照：${ext(yokota.url, dot(yokota.date) + ' 横田えり氏の表記')}　／　${ext(rep.url, dot(rep.date) + ' 「' + rep.why + '」')}${both ? '　／　' + ext(both.url, dot(both.date) + ' 伊藤・谷口両氏の表記') : ''}</span></p>`;
+      ${PM.footnotes('ch3', [
+        `${PM.conf('est')}${esc(PM.STEPS[0].note)}。`,
+        `${PM.conf('fact')}注記：代表表記が2025年4月前後に横田えり氏→伊藤あやめ氏・谷口野乃花氏へ（リリース文面上の表記による）。<br><span class="src">参照：${ext(yokota.url, dot(yokota.date) + ' 横田えり氏の表記')}　／　${ext(rep.url, dot(rep.date) + ' 「' + rep.why + '」')}${both ? '　／　' + ext(both.url, dot(both.date) + ' 伊藤・谷口両氏の表記') : ''}</span>`,
+      ])}`;
+    const title = document.querySelector('.ch-title');
+    if (title) title.insertAdjacentHTML('beforeend', PM.fnRef('ch3', 2));
   }
 
   // ---------- chapter 5: ecosystem diagram ----------
@@ -206,16 +208,16 @@
     el('s06-body').innerHTML = `
       <p>2026年は、無料で広げた自治体の利用基盤の上に、民間パートナーのアプリ（Qommons ONE）と新製品群を重ねる構想が前面に出た。1月のシリーズA（${esc(sa.headline.replace(/^シリーズAで/, ''))}）は、マイルストーンの記述では「${esc(sa.why)}」とされる。</p>
       <p>一方で6月には${esc(outage.headline)}。${esc(outage.why)}。</p>
-      <p class="src">関係図の矢印ラベルは、各出典の記述をもとに要約したもの。図中の要素をクリック／タップすると出典が開く。</p>`;
+`;
   }
 
   PM.initChapters = () => {
-    if (el('s02-body')) renderS02Body();
+    if (el('s02-body')) { renderS02Body(); PM.figNotes('funding', el('chart-funding').closest('figure')); }
     PM.register(el('chart-funding'), fundingChart);
-    if (el('wall')) renderWall();
+    if (el('wall')) { renderWall(); PM.figNotes('wall', el('wall').closest('figure')); }
     PM.register(el('chart-wallstrip'), wallStrip);
     if (el('steps')) renderSteps();
-    if (el('eco-src')) renderEcoSrc();
+    if (el('eco-src')) { renderEcoSrc(); PM.figNotes('eco', el('chart-eco').closest('figure')); }
     PM.register(el('chart-eco'), ecoChart);
   };
 })(window.PM);

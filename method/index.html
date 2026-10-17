@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=4">
+<link rel="stylesheet" href="../assets/css/style.css?v=5">
 </head>
 <body data-page="method">
 <a class="skip" href="#main">本文へ移動</a>
@@ -29,6 +29,29 @@
     <p>全数値は同社の自社発表（「当社調べ」を含む）による。各数値の脇に時点と出典を記す。</p>
     <p>出典：Polimill株式会社 自社サイト（polimill.jp）および PR TIMES 掲載の同社リリース。収録期間 2021年10月26日〜2026年10月6日。テーマ分類は暫定。</p>
   </div>
+  <div id="method-sources"></div>
+</section>
+
+<section class="sec" id="sec-labels" data-label="確度ラベル">
+  <h2 class="msg msg-s">確度ラベル</h2>
+  <div class="body"><p>数値と記述には、どこまで確かめられるかを示すラベルを付ける。ラベルは枠の形（塗り・実線・破線・点線）でも区別できる。</p></div>
+  <dl class="labels" id="method-labels"></dl>
+</section>
+
+<section class="sec" id="sec-themes" data-label="テーマ分類">
+  <h2 class="msg msg-s">テーマ分類</h2>
+  <div id="method-themes"></div>
+</section>
+
+<section class="sec" id="sec-calc" data-label="計算方法">
+  <h2 class="msg msg-s">計算方法</h2>
+  <div id="method-calc"></div>
+</section>
+
+<section class="sec" id="sec-notes" data-label="図の注記">
+  <h2 class="msg msg-s">図の注記</h2>
+  <div class="body"><p>各ページの図の下に置いた注記を、ここにまとめる。</p></div>
+  <div id="method-notes"></div>
 </section>
 
 <section class="sec" id="sec-files" data-label="データファイル">
@@ -49,20 +72,22 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="../assets/js/data.js?v=4"></script>
-<script src="../assets/js/core.js?v=4"></script>
-<script src="../assets/js/site.js?v=4"></script>
-<script src="../assets/js/charts/adoption.js?v=4"></script>
-<script src="../assets/js/charts/monthly.js?v=4"></script>
-<script src="../assets/js/charts/chapters.js?v=4"></script>
-<script src="../assets/js/charts/tiles.js?v=4"></script>
-<script src="../assets/js/charts/targets.js?v=4"></script>
-<script src="../assets/js/charts/timeline.js?v=4"></script>
-<script src="../assets/js/charts/archive.js?v=4"></script>
-<script src="../assets/js/boot.js?v=4"></script>
+<script src="../assets/js/data.js?v=5"></script>
+<script src="../assets/js/core.js?v=5"></script>
+<script src="../assets/js/site.js?v=5"></script>
+<script src="../assets/js/notes.js?v=5"></script>
+<script src="../assets/js/charts/adoption.js?v=5"></script>
+<script src="../assets/js/charts/monthly.js?v=5"></script>
+<script src="../assets/js/charts/chapters.js?v=5"></script>
+<script src="../assets/js/charts/tiles.js?v=5"></script>
+<script src="../assets/js/charts/targets.js?v=5"></script>
+<script src="../assets/js/charts/timeline.js?v=5"></script>
+<script src="../assets/js/charts/archive.js?v=5"></script>
+<script src="../assets/js/charts/method.js?v=5"></script>
+<script src="../assets/js/boot.js?v=5"></script>
 <script>
   if (/[?&]check\b/.test(location.search)) {
-    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=4'; document.body.appendChild(s);
+    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=5'; document.body.appendChild(s);
   }
 </script>
 </body>

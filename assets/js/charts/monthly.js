@@ -103,21 +103,21 @@
     const pct = v => Math.round(v * 100) + '%';
     const cross = PM.crossMonth;
     const total = d3.sum(monthRows, r => r.total);
-    const pv1 = PM.ms('2025-08-06', 'PV'), pv2 = PM.ms('2025-12-31', 'PV');
     el('s01-body').innerHTML = `
+      <p class="tbl-cap">章ごとの発信本数とテーマの比率${PM.conf('fact')}</p>
       <table class="mini"><thead><tr><th>章</th><th>本数</th><th>月平均</th><th>Surfvote</th><th>QommonsAI系</th></tr></thead><tbody>
       ${rows.map(r => `<tr><td><a href="${PM.href(r.c.path)}">第${r.c.n}章</a></td><td>${r.total}</td><td>${r.avg.toFixed(1)}</td><td>${pct(r.sv)}</td><td>${pct(r.qa)}</td></tr>`).join('')}
       <tr><td>計</td><td>${total}</td><td>${(total / monthRows.length).toFixed(1)}</td><td></td><td></td></tr>
       </tbody></table>
-      <p class="src">QommonsAI系＝QommonsAI・QommonsAI研修・自治体協定の合計。テーマ分類は元データの暫定分類による。データのない月も0として横軸に含める（全${monthRows.length}か月）。</p>
       <p>第2章までは発信の大半がSurfvoteの投票記事だった。${cross ? `${fmtYM(cross.m)}以降は、QommonsAI関連の発信が毎月Surfvoteを上回っている。` : ''}発信の総量は第3〜4章で月10本前後まで細り、第5章で月15本前後に戻った。</p>
-      <p class="src">ここで言えるのは「発信の主役」の移り変わりまで。Surfvote自体は続いており、${ext(pv1.url, dot(pv1.date) + ' ' + pv1.headline)}、${ext(pv2.url, dot(pv2.date) + ' ' + pv2.headline)}。</p>`;
+`;
   }
 
   PM.initMonthly = () => {
     if (!el('chart-monthly')) return;
     PM.legend('legend-monthly', THEMES.map(t => ({ label: t.label, color: t.color })).concat([{ label: '導入自治体数（右目盛）', cls: 'sw-line' }, { label: 'PR TIMES出典の月（棒の下の点）', color: '#111', cls: 'sw-pr' }, { label: 'マイルストーン', cls: 'sw-tri' }]));
     renderS01Body();
+    PM.figNotes('monthly', el('chart-monthly').closest('figure'));
     PM.register(el('chart-monthly'), monthlyChart);
   };
 })(window.PM);

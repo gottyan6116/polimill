@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=4">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
 </head>
 <body data-page="top">
 <a class="skip" href="#main">本文へ移動</a>
@@ -30,9 +30,9 @@
   <div class="insights">
     <h3 class="sub">3つの示唆</h3>
     <ol>
-      <li><b>発信の主役は、SurfvoteからQommonsAIへ移った。</b>2025年12月以降、QommonsAI関連の発信が毎月Surfvoteを上回る。<a class="more-link" href="analysis/#sec-composition">分析A 発信構成へ</a></li>
-      <li><b>「無料枠・研修・協定」の型を量産し、約50（2024年8月）から約800自治体（2026年5月）へ広げた。</b><a class="more-link" href="chapters/3/">第3章へ</a><a class="more-link" href="chapters/4/">第4章へ</a></li>
-      <li><b>伸びはペースが落ちているように見え（月約60 → 約40、発表値からの試算）、収益化（Qommons ONE）の状況は公開情報では未確認。</b><a class="more-link" href="analysis/#sec-targets">分析B 目標と実績へ</a><a class="more-link" href="analysis/#sec-questions">分析D 問いへ</a></li>
+      <li><b>発信の主役は、SurfvoteからQommonsAIへ移った。</b>2025年12月以降、QommonsAI関連の発信が毎月Surfvoteを上回る。<a class="conf conf-fact" href="method/#sec-labels">事実</a><a class="more-link" href="analysis/#sec-composition">分析A 発信構成へ</a></li>
+      <li><b>「無料枠・研修・協定」の型を量産し、約50（2024年8月）から約800自治体（2026年5月）へ広げた。</b><a class="conf conf-claim" href="method/#sec-labels">自社発表</a><a class="more-link" href="chapters/3/">第3章へ</a><a class="more-link" href="chapters/4/">第4章へ</a></li>
+      <li><b>伸びはペースが落ちているように見え（月約60 → 約40、発表値からの試算）、収益化（Qommons ONE）の状況は公開情報では未確認。</b><a class="conf conf-est" href="method/#sec-labels">試算</a><a class="conf conf-unk" href="method/#sec-labels">未確認</a><a class="more-link" href="analysis/#sec-targets">分析B 目標と実績へ</a><a class="more-link" href="analysis/#sec-questions">分析D 問いへ</a></li>
     </ol>
   </div>
   <div class="metrics" id="metrics"></div>
@@ -61,20 +61,22 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/js/data.js?v=4"></script>
-<script src="assets/js/core.js?v=4"></script>
-<script src="assets/js/site.js?v=4"></script>
-<script src="assets/js/charts/adoption.js?v=4"></script>
-<script src="assets/js/charts/monthly.js?v=4"></script>
-<script src="assets/js/charts/chapters.js?v=4"></script>
-<script src="assets/js/charts/tiles.js?v=4"></script>
-<script src="assets/js/charts/targets.js?v=4"></script>
-<script src="assets/js/charts/timeline.js?v=4"></script>
-<script src="assets/js/charts/archive.js?v=4"></script>
-<script src="assets/js/boot.js?v=4"></script>
+<script src="assets/js/data.js?v=5"></script>
+<script src="assets/js/core.js?v=5"></script>
+<script src="assets/js/site.js?v=5"></script>
+<script src="assets/js/notes.js?v=5"></script>
+<script src="assets/js/charts/adoption.js?v=5"></script>
+<script src="assets/js/charts/monthly.js?v=5"></script>
+<script src="assets/js/charts/chapters.js?v=5"></script>
+<script src="assets/js/charts/tiles.js?v=5"></script>
+<script src="assets/js/charts/targets.js?v=5"></script>
+<script src="assets/js/charts/timeline.js?v=5"></script>
+<script src="assets/js/charts/archive.js?v=5"></script>
+<script src="assets/js/charts/method.js?v=5"></script>
+<script src="assets/js/boot.js?v=5"></script>
 <script>
   if (/[?&]check\b/.test(location.search)) {
-    var s = document.createElement('script'); s.src = 'assets/js/check.js?v=4'; document.body.appendChild(s);
+    var s = document.createElement('script'); s.src = 'assets/js/check.js?v=5'; document.body.appendChild(s);
   }
 </script>
 </body>

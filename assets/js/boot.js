@@ -9,5 +9,6 @@
   PM.initTargets();
   PM.initTimeline();
   PM.initArchive();
+  PM.initMethod();
   PM.startCharts();
 })(window.PM);

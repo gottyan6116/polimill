@@ -12,7 +12,13 @@ const corpus = squash(after.join('\n'));
 
 const count = arr => arr.reduce((m, l) => m.set(l, (m.get(l) || 0) + 1), new Map());
 const bCount = count(before), aCount = count(after);
-const missingAll = [...bCount.keys()].filter(l => !corpus.includes(squash(l)));
+const whole = [...bCount.keys()].filter(l => !corpus.includes(squash(l)));
+// A line no longer found whole may have been split (e.g. a parenthetical moved to a footnote, or
+// "出典：自社サイト" turned into an icon whose accessible name keeps that text). It still counts as
+// kept when every fragment of 3+ characters is found; such lines are listed separately.
+const fragments = l => l.split(/[\s　、。，,（）()／/「」『』：:・]+/).filter(f => f.length >= 3);
+const relocated = whole.filter(l => fragments(l).length > 0 && fragments(l).every(f => corpus.includes(squash(f))));
+const missingAll = whole.filter(l => !relocated.includes(l));
 // intended removals (renumbering, nav labels, approved wording changes) with the reason for each
 const expected = fs.existsSync('audit/expected-removals.json') ? JSON.parse(fs.readFileSync('audit/expected-removals.json', 'utf8')) : {};
 const missing = missingAll.filter(l => !(l in expected));
@@ -40,6 +46,9 @@ const md = [
   '## 消えたリンク先（理由の記録なし）', '', ...(lostLinks.length ? lostLinks.map(h => `- \`${h}\``) : ['なし']), '',
   '## 意図した変更（番号・ナビ・承認済みの文言変更）', '', '| 移行前の文言・リンク | 理由 |', '|---|---|',
   ...explained.concat(lostExplained).map(l => `| ${l.split('|').join('/')} | ${expected[l]} |`), '',
+  '## 分割・再配置された文言（全断片が移行後に残っている）', '',
+  `${relocated.length} 行。注記の脚注化、出典表記のアイコン化（読み上げ名に「出典：…」を保持）など。`, '',
+  ...relocated.map(l => `- ${l}`), '',
   '## 出現回数が減った文言（文言自体は残っている）', '',
   '抽出は1ページを375px・1440pxの2幅で行い、ツールチップと都道府県パネルの中身も含むため、回数は表示回数の目安。', '',
   '| 文言 | 移行前 | 移行後 |', '|---|---:|---:|',
@@ -47,6 +56,6 @@ const md = [
   fewer.length > 60 ? `\nほか ${fewer.length - 60} 行` : '', '',
 ];
 fs.writeFileSync(reportF, md.join('\n'), 'utf8');
-console.log(`missing=${missing.length} lostLinks=${lostLinks.length} explained=${explained.length + lostExplained.length} fewer=${fewer.length} -> ${reportF}`);
+console.log(`missing=${missing.length} lostLinks=${lostLinks.length} explained=${explained.length + lostExplained.length} relocated=${relocated.length} fewer=${fewer.length} -> ${reportF}`);
 missing.forEach(l => console.log('  - ' + l));
 lostLinks.forEach(h => console.log('  link - ' + h));

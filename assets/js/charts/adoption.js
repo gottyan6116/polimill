@@ -11,13 +11,13 @@
     const users = lastAdopt.users_man;
     const items = [
       { key: 'municipalities', label: '導入自治体', value: `約${nf(lastAdopt.municipalities)}`, unit: '', raw: lastAdopt.municipalities,
-        src: PM.srcLine(lastAdopt.source, lastAdopt.url, fmtJ(lastAdopt.t) + '時点') },
+        src: PM.srcLine(lastAdopt.source, lastAdopt.url, fmtJ(lastAdopt.t) + '時点', 'claim') },
       { key: 'users', label: '職員ユーザー', value: `約${users}`, unit: '万人', raw: users,
-        src: PM.srcLine(lastAdopt.source, lastAdopt.url, fmtJ(lastAdopt.t) + '時点') },
+        src: PM.srcLine(lastAdopt.source, lastAdopt.url, fmtJ(lastAdopt.t) + '時点', 'claim') },
       { key: 'seriesA', label: 'シリーズA調達額', value: '約6.35', unit: '億円', value2: '評価額 約50億円', raw: '約6.35億円|約50億円',
-        src: PM.srcLine(seriesA.source, seriesA.url, fmtJ(parse(seriesA.date)) + '発表') },
+        src: PM.srcLine(seriesA.source, seriesA.url, fmtJ(parse(seriesA.date)) + '発表', 'claim') },
       { key: 'events', label: '研修・協定', value: `${ev.length}`, unit: '件', value2: `${prefN}都道府県で実施`, raw: `${ev.length}|${prefN}`,
-        src: `<p class="src">${esc(fmtJ(parse(evLast)))}までの自社発表を集計　<a href="${PM.href('analysis/#sec-regions')}">内訳は分析C 全国の分布へ</a></p>` },
+        src: `<p class="src">${esc(fmtJ(parse(evLast)))}までの自社発表を集計${PM.conf('fact')}　<a href="${PM.href('analysis/#sec-regions')}">内訳は分析C 全国の分布へ</a></p>` },
     ];
     el('metrics').innerHTML = items.map(i => `
       <div class="metric" data-key="${i.key}" data-raw="${esc(i.raw)}">
@@ -131,32 +131,33 @@
     const first = adoption[0];
     const months = d3.timeMonth.count(first.t, lastAdopt.t);
     el('s00-body').innerHTML = `
-      <p>QommonsAIの導入自治体数は、${fmtYM(first.t)}の${esc(first.note)}から${fmtYM(lastAdopt.t)}の${esc(lastAdopt.note)}まで、${months}か月で約${Math.round(lastAdopt.municipalities / first.municipalities)}倍になった。数値はいずれも同社発表の概数で、${fmtYM(lastAdopt.t)}を最後に更新が止まっている。</p>
-      <p class="src">点をクリック／タップすると、その時点の発表文と出典が開く。</p>`;
+      <p>QommonsAIの導入自治体数は、${fmtYM(first.t)}の${esc(first.note)}から${fmtYM(lastAdopt.t)}の${esc(lastAdopt.note)}まで、${months}か月で約${Math.round(lastAdopt.municipalities / first.municipalities)}倍になった。数値はいずれも同社発表の概数で、${fmtYM(lastAdopt.t)}を最後に更新が止まっている。${PM.fnRef('top', 1)}</p>
+      ${PM.footnotes('top', [`${PM.conf('est')}倍率＝最新の導入自治体数（${esc(lastAdopt.note)}）÷最初の値（${esc(first.note)}）。発表値からの試算。計算方法は<a href="${PM.href('method/#sec-calc')}">データと方法</a>に記載。`])}`;
   }
 
   function renderZoomNotes() {
     const { round10, monthsBetween } = PM;
     el('zoom-notes').innerHTML = PM.ZOOM_NOTES.map(n => `
-      <li data-date="${n.m.date}"><span class="k">${n.k}</span><span><span class="d">${fmtJ(n.t)}</span>${esc(n.m.headline)}<br><span class="src">出典：${ext(n.m.url, n.m.source)}</span></span></li>`).join('');
+      <li data-date="${n.m.date}"><span class="k">${n.k}</span><span><span class="d">${fmtJ(n.t)}</span>${esc(n.m.headline)}${PM.srcIcon(n.m.url, n.m.source, PM.dot(n.m.date))}</span></li>`).join('');
     const a = adoption.find(d => d.date === '2024-11-30'), b = adoption.find(d => d.date === '2025-12-24');
     const p0 = adoption.find(d => d.date === '2025-07-23');
     const rate = (b.municipalities - p0.municipalities) / (d3.timeDay.count(p0.t, b.t) / 30.44);
     el('s05-body').innerHTML = `
-      <p>${fmtJ(a.t)}の${nf(a.municipalities)}から${fmtJ(b.t)}の${nf(b.municipalities)}へ、約1年で+${b.municipalities - a.municipalities}。伸びが急になるのは2025年7月以降で、${fmtYM(p0.t)}の${p0.municipalities}から${fmtYM(b.t)}の${b.municipalities}まで、月あたり約${round10(rate)}自治体のペース（+${b.municipalities - p0.municipalities}を約${monthsBetween(p0, b)}か月で。発表値からの単純計算）。</p>
+      <p>${fmtJ(a.t)}の${nf(a.municipalities)}から${fmtJ(b.t)}の${nf(b.municipalities)}へ、約1年で+${b.municipalities - a.municipalities}。伸びが急になるのは2025年7月以降で、${fmtYM(p0.t)}の${p0.municipalities}から${fmtYM(b.t)}の${b.municipalities}まで、月あたり約${round10(rate)}自治体のペース。${PM.fnRef('ch4', 1)}</p>
       <p>同じ時期に、自治体が導入判断で求める認証（ISO 27001／ISO 9001／Pマーク）を取り、正社員を倍増させ、ミッションを言語化し、LGWAN接続料の無償化を宣言した。拡大の速度に、組織と信頼の整備を後から追いつかせている。</p>
-      <p class="src">番号は下のタイムラインの番号に対応。曲線は発表時点を直線で結んだもので、間の推移は不明。</p>`;
+      ${PM.footnotes('ch4', [`${PM.conf('est')}+${b.municipalities - p0.municipalities}を約${monthsBetween(p0, b)}か月で。発表値からの単純計算。計算方法は<a href="${PM.href('method/#sec-calc')}">データと方法</a>に記載。`])}`;
   }
 
   PM.initAdoption = () => {
     if (el('metrics')) renderMetrics();
     if (el('s00-body')) renderS00Body();
+    if (el('chart-adoption')) PM.figNotes('adoption', el('chart-adoption').closest('figure'));
     PM.register(el('chart-adoption'), (n, a) => adoptionChart(n, a, {
       domain: [new Date(2024, 5, 1), new Date(2026, 10, 1)], yMax: 1000, height: nw => nw ? 280 : 340,
       tickMonths: () => 6, chapters: CH.slice(2), noData: true, lastLabel: true, valueLabels: ['2024-08-02', '2025-07-23', '2025-12-24'],
       aria: '導入自治体数の推移（2024年8月〜2026年5月）',
     }));
-    if (el('zoom-notes')) renderZoomNotes();
+    if (el('zoom-notes')) { renderZoomNotes(); PM.figNotes('zoom', el('chart-zoom').closest('figure')); }
     PM.register(el('chart-zoom'), (n, a) => adoptionChart(n, a, {
       domain: [new Date(2024, 11, 15), new Date(2026, 0, 20)], yMax: 700, height: nw => nw ? 300 : 340,
       tickMonths: nw => nw ? 3 : 2, notes: PM.ZOOM_NOTES, valueLabels: ['2025-05-14', '2025-07-23', '2025-10-02', ['2025-12-24', 'br']],

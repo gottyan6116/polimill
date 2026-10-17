@@ -72,14 +72,15 @@
     const withAgree = prefList.filter(p => p.agree > 0);
     selectedPref = top[0]; renderPanel(top[0]);
     el('s07-body').innerHTML = `
-      <p>研修・協定の発表は${prefList.length - zero.length}都道府県に及ぶ。最も多いのは${top.map(p => `${p.name}（${p.total}件）`).join('、')}。協定は${withAgree.length}道府県で${d3.sum(prefList, p => p.agree)}件。</p>
+      <p>研修・協定の発表は${prefList.length - zero.length}都道府県に及ぶ。最も多いのは${top.map(p => `${p.name}（${p.total}件）`).join('、')}。協定は${withAgree.length}道府県で${d3.sum(prefList, p => p.agree)}件。${PM.conf('fact')}</p>
       <p>まだ発表がないのは${zero.length}県：${zero.map(p => p.name).join('、')}。中国・四国・九州の一部に空白が残る。</p>
-      <p class="src">件数は 3_prefecture_summary（研修・協定）による。タイルの配置は地理に近い模式配置。タイルをタップすると件数と最新の発表が右（モバイルでは下）に出る。</p>`;
+`;
   }
 
   PM.initTiles = () => {
     if (!el('chart-tiles')) return;
     renderTilesText();
+    PM.figNotes('tiles', el('chart-tiles').closest('figure'));
     PM.register(el('chart-tiles'), tileChart);
   };
 })(window.PM);

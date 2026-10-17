@@ -11,7 +11,9 @@
       ['sec-composition', 'A 発信構成'], ['sec-targets', 'B 目標と実績'], ['sec-regions', 'C 全国の分布'], ['sec-questions', 'D 入社後に確認したい問い'],
     ] },
     { id: 'archive', path: 'archive/', label: 'アーカイブ', short: 'アーカイブ' },
-    { id: 'method', path: 'method/', label: 'データと方法', short: '方法' },
+    { id: 'method', path: 'method/', label: 'データと方法', short: '方法', sub: [
+      ['sec-sources', '出典'], ['sec-labels', '確度ラベル'], ['sec-themes', 'テーマ分類'], ['sec-calc', '計算方法'], ['sec-notes', '図の注記'], ['sec-files', 'データファイル'],
+    ] },
   ];
   PM.PAGES = PAGES;
 

@@ -42,7 +42,42 @@
   // ---------- helpers ----------
   const esc = PM.esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const ext = PM.ext = (url, text) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>`;
-  PM.srcLine = (source, url, when) => `<p class="src">${when ? esc(when) + '　' : ''}出典：${ext(url, source)}</p>`;
+  // ---------- confidence labels: shape/line style differ, not only color ----------
+  PM.CONF = {
+    fact: { label: '事実', desc: '公開記事の存在・日付・件数など、記事そのものから確かめられること' },
+    claim: { label: '自社発表', desc: '同社が発表した数値や主張。第三者による検証はない' },
+    est: { label: '試算', desc: '発表値からこのサイトが計算した値（月あたりのペース、倍率、目標比、逆算した時期など）' },
+    unk: { label: '未確認', desc: '公開情報では確かめられないこと' },
+  };
+  PM.conf = k => `<a class="conf conf-${k}" href="${PM.ROOT}method/#sec-labels" title="${esc(PM.CONF[k].desc)}">${PM.CONF[k].label}</a>`;
+
+  // ---------- source link icon: the source name shows on hover / first tap ----------
+  const ICON = '<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true" focusable="false"><path d="M5 2.5H2.5v7h7V7M7 2h3v3M10 2L5.5 6.5" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>';
+  PM.srcIcon = (url, source, what) => `<a class="src-ic" href="${esc(url)}" target="_blank" rel="noopener" data-src="${esc(source)}" aria-label="出典：${esc(source)}${what ? '（' + esc(what) + '）' : ''}">${ICON}</a>`;
+  PM.srcLine = (source, url, when, conf) => `<p class="src">${when ? esc(when) : ''}${conf ? PM.conf(conf) : ''}${PM.srcIcon(url, source, when)}</p>`;
+  // touch: first tap shows the source name, second tap opens it
+  let lastPointer = 'mouse';
+  document.addEventListener('pointerdown', e => { lastPointer = e.pointerType; }, true);
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('.src-ic');
+    document.querySelectorAll('.src-ic.armed').forEach(x => { if (x !== a) x.classList.remove('armed'); });
+    if (!a || lastPointer !== 'touch' || a.classList.contains('armed')) return;
+    e.preventDefault();
+    a.classList.add('armed');
+  }, true);
+
+  // ---------- footnotes ----------
+  PM.fnRef = (scope, n) => `<sup class="fn"><a href="#fn-${scope}-${n}" id="fnref-${scope}-${n}" aria-label="脚注${n}">${n}</a></sup>`;
+  PM.footnotes = (scope, items) => `<ol class="footnotes" aria-label="脚注">${items.map((html, i) =>
+    `<li id="fn-${scope}-${i + 1}">${html} <a class="fn-back" href="#fnref-${scope}-${i + 1}" aria-label="本文に戻る">戻る</a></li>`).join('')}</ol>`;
+
+  // ---------- figure notes (also listed on the method page) ----------
+  PM.NOTES = {};   // id -> { page, path, fig, items: [html] } — filled by notes.js
+  PM.figNotes = (id, figure) => {
+    const n = PM.NOTES[id];
+    if (!n || !figure) return;
+    figure.insertAdjacentHTML('beforeend', `<div class="fig-notes" data-notes="${id}">${n.items.map(h => `<p>${h}</p>`).join('')}</div>`);
+  };
   PM.dot = s => PM.fmtDot(parse(s));
   PM.firstNum = s => { const m = String(s).replace(/,/g, '').match(/\d+(\.\d+)?/); return m ? +m[0] : NaN; };
   const ms = PM.ms = (date, needle) => {
@@ -150,6 +185,8 @@
       .on('click', (ev, d) => { ev.stopPropagation(); pinned = true; showTip(html(d), ev); });
   };
   document.addEventListener('click', e => { if (!tip.node().contains(e.target)) { pinned = false; hideTip(); } });
+  // keyboard: Esc closes a pinned tooltip
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { pinned = false; hideTip(); } });
   // "この月の記事を一覧で見る": filter in place on the archive page, otherwise go there
   tip.on('click', ev => {
     const b = ev.target.closest('.tip-act');
