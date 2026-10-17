@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>データと方法｜Polimill 5年の年表</title>
+<meta name="description" content="この年表の出典、データファイル、テーマ分類と計算方法の説明。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=4">
+</head>
+<body data-page="method">
+<a class="skip" href="#main">本文へ移動</a>
+<div id="site-head"></div>
+
+<div class="layout">
+<aside class="sidenav" id="sidenav" aria-label="サイト内の移動"></aside>
+
+<main id="main">
+<header class="page-head">
+  <h1 class="page-title">データと方法</h1>
+  <p class="lede">この年表の数値と記述がどこから来ているかをまとめる。</p>
+</header>
+
+<section class="sec" id="sec-sources" data-label="出典">
+  <h2 class="msg msg-s">出典</h2>
+  <div class="body">
+    <p>全数値は同社の自社発表（「当社調べ」を含む）による。各数値の脇に時点と出典を記す。</p>
+    <p>出典：Polimill株式会社 自社サイト（polimill.jp）および PR TIMES 掲載の同社リリース。収録期間 2021年10月26日〜2026年10月6日。テーマ分類は暫定。</p>
+  </div>
+</section>
+
+<section class="sec" id="sec-files" data-label="データファイル">
+  <h2 class="msg msg-s">データファイル</h2>
+  <table class="mini files">
+    <thead><tr><th>ファイル</th><th>中身</th></tr></thead>
+    <tbody>
+      <tr><td><code>polimill_data.json</code></td><td>以下をまとめたもの（chapters / milestones / adoption / prefectures / prefecture_events / targets）</td></tr>
+      <tr><td><code>0_all_news_699.csv</code></td><td>全ニュース699件（日付・暫定テーマ・タイトル・出典・URL）</td></tr>
+      <tr><td><code>1_milestones.csv</code></td><td>マイルストーン43件（date, chapter, chapter_name, headline, why, source, url）</td></tr>
+      <tr><td><code>2_adoption.csv</code></td><td>導入自治体数12時点（date, municipalities, users_man, note, source, url）</td></tr>
+      <tr><td><code>3_prefecture_summary.csv</code> / <code>3b_prefecture_events.csv</code></td><td>都道府県別の研修・協定件数と個別イベント</td></tr>
+      <tr><td><code>4_targets_vs_actuals.csv</code></td><td>公言目標と実績6項目（status付き）</td></tr>
+    </tbody>
+  </table>
+</section>
+</main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="../assets/js/data.js?v=4"></script>
+<script src="../assets/js/core.js?v=4"></script>
+<script src="../assets/js/site.js?v=4"></script>
+<script src="../assets/js/charts/adoption.js?v=4"></script>
+<script src="../assets/js/charts/monthly.js?v=4"></script>
+<script src="../assets/js/charts/chapters.js?v=4"></script>
+<script src="../assets/js/charts/tiles.js?v=4"></script>
+<script src="../assets/js/charts/targets.js?v=4"></script>
+<script src="../assets/js/charts/timeline.js?v=4"></script>
+<script src="../assets/js/charts/archive.js?v=4"></script>
+<script src="../assets/js/boot.js?v=4"></script>
+<script>
+  if (/[?&]check\b/.test(location.search)) {
+    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=4'; document.body.appendChild(s);
+  }
+</script>
+</body>
+</html>

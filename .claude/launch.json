@@ -4,7 +4,7 @@
     {
       "name": "polimill-timeline",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3010"],
+      "runtimeArgs": ["-m", "http.server", "3010", "--directory", "C:/Users/takas/dev/polimill"],
       "port": 3010
     }
   ]

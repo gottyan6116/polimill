@@ -1,61 +1,40 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-root="">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Polimill 5年の年表</title>
-<meta name="description" content="Polimill株式会社の2021年10月から2026年10月までの歩みを、自社発表699件から読む年表。">
+<meta name="description" content="Polimill株式会社の2021年10月から2026年10月までの歩みを、自社発表699件から読む年表。結論と3つの示唆、主要な数値、5つの章への入口。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=2">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
-<body>
-
+<body data-page="top">
+<a class="skip" href="#main">本文へ移動</a>
 <header class="masthead">
   <p class="kicker">Polimill株式会社　2021.10–2026.10</p>
   <h1>5年の年表</h1>
   <p class="lede">市民向けSNS「Surfvote」から、行政向け生成AI「QommonsAI」へ。自社発表699件を時系列に並べ、歩みと現在地、経営上の論点を読む。</p>
   <p class="note">全数値は同社の自社発表（「当社調べ」を含む）による。各数値の脇に時点と出典を記す。</p>
 </header>
-
-<nav class="jumpbar" id="jumpbar" aria-label="章へ移動">
-  <span class="jumpbar-current" id="jumpbar-current">00 現在地</span>
-  <ol class="jumpbar-list">
-    <li><a href="#s00">00</a></li>
-    <li><a href="#s01">01</a></li>
-    <li><a href="#s02">02</a></li>
-    <li><a href="#s03">03</a></li>
-    <li><a href="#s04">04</a></li>
-    <li><a href="#s05">05</a></li>
-    <li><a href="#s06">06</a></li>
-    <li><a href="#s07">07</a></li>
-    <li><a href="#s08">08</a></li>
-    <li><a href="#s09">09</a></li>
-  </ol>
-</nav>
+<div id="site-head"></div>
 
 <div class="layout">
-<aside class="sidenav" aria-label="目次">
-  <ol>
-    <li><a href="#s00"><span class="n">00</span>現在地</a></li>
-    <li><a href="#s01"><span class="n">01</span>5年の地図</a></li>
-    <li><a href="#s02"><span class="n">02</span>第1章 創業とSurfvote誕生</a></li>
-    <li><a href="#s03"><span class="n">03</span>第2章 Surfvote量産期</a></li>
-    <li><a href="#s04"><span class="n">04</span>第3章 QommonsAI誕生と体制転換</a></li>
-    <li><a href="#s05"><span class="n">05</span>第4章 急拡大</a></li>
-    <li><a href="#s06"><span class="n">06</span>第5章 基盤化・エコシステム化</a></li>
-    <li><a href="#s07"><span class="n">07</span>全国</a></li>
-    <li><a href="#s08"><span class="n">08</span>経営企画の論点</a></li>
-    <li><a href="#s09"><span class="n">09</span>アーカイブ</a></li>
-  </ol>
-</aside>
+<aside class="sidenav" id="sidenav" aria-label="サイト内の移動"></aside>
 
-<main>
-
-<section class="sec" id="s00" data-label="00 現在地">
-  <p class="sec-label"><span class="sec-no">00</span>現在地</p>
+<main id="main">
+<section class="sec" id="sec-now" data-label="現在地">
+  <p class="sec-label">現在地</p>
   <h2 class="msg">5年で、市民のSNSから行政のAI基盤へ</h2>
+  <div class="insights">
+    <h3 class="sub">3つの示唆</h3>
+    <ol>
+      <li><b>発信の主役は、SurfvoteからQommonsAIへ移った。</b>2025年12月以降、QommonsAI関連の発信が毎月Surfvoteを上回る。<a class="more-link" href="analysis/#sec-composition">分析A 発信構成へ</a></li>
+      <li><b>「無料枠・研修・協定」の型を量産し、約50（2024年8月）から約800自治体（2026年5月）へ広げた。</b><a class="more-link" href="chapters/3/">第3章へ</a><a class="more-link" href="chapters/4/">第4章へ</a></li>
+      <li><b>伸びはペースが落ちているように見え（月約60 → 約40、発表値からの試算）、収益化（Qommons ONE）の状況は公開情報では未確認。</b><a class="more-link" href="analysis/#sec-targets">分析B 目標と実績へ</a><a class="more-link" href="analysis/#sec-questions">分析D 問いへ</a></li>
+    </ol>
+  </div>
   <div class="metrics" id="metrics"></div>
   <figure class="fig">
     <figcaption class="fig-cap">QommonsAI 導入自治体数（自社発表の12時点）</figcaption>
@@ -64,133 +43,38 @@
   <div class="body" id="s00-body"></div>
 </section>
 
-<section class="sec" id="s01" data-label="01 5年の地図">
-  <p class="sec-label"><span class="sec-no">01</span>5年の地図</p>
-  <h2 class="msg">主役は、Surfvoteから QommonsAIへ交代した</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">月別の発信本数（全699件、テーマ別の積み上げ・左目盛）と導入自治体数（線・右目盛）。上の章の帯を押すとその章へ、月を押すとその月の記事一覧へ移動できる</figcaption>
-    <ul class="legend" id="legend-monthly"></ul>
-    <div class="chart" id="chart-monthly"></div>
-  </figure>
-  <div class="body" id="s01-body"></div>
+<section class="sec" id="sec-chapters" data-label="5つの章">
+  <h2 class="msg msg-s">5つの章で読む</h2>
+  <div class="minitl" id="minitl"></div>
 </section>
 
-<section class="sec chapter" id="s02" data-label="02 第1章">
-  <div class="ch-head"><span class="ch-no">01</span><div><p class="ch-title">創業とSurfvote誕生</p><p class="ch-period">2021–2022</p></div></div>
-  <h2 class="msg">市民の声を政策に届ける実験から始まった</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">累計調達額（各時点の発表値）</figcaption>
-    <div class="chart" id="chart-funding"></div>
-  </figure>
-  <div class="body" id="s02-body"></div>
-  <ol class="tl" data-chapter="1"></ol>
+<section class="sec" id="sec-pages" data-label="ページ案内">
+  <h2 class="msg msg-s">目的に合わせて読む</h2>
+  <ul class="entries">
+    <li><a href="chapters/1/"><span class="en">第1〜5章</span><span class="ed">上から順に読む物語。章ごとに象徴的な図と出来事のタイムライン。</span></a></li>
+    <li><a href="analysis/"><span class="en">分析</span><span class="ed">比べて考える。発信構成、目標と実績、全国の分布、入社後に確認したい問い。</span></a></li>
+    <li><a href="archive/"><span class="en">アーカイブ</span><span class="ed">検索して原典を引く。自社発表699件をテーマ・年・出典・キーワードで絞り込み。</span></a></li>
+    <li><a href="method/"><span class="en">データと方法</span><span class="ed">出典、テーマ分類、データファイルの説明。</span></a></li>
+  </ul>
 </section>
-
-<section class="sec chapter" id="s03" data-label="03 第2章">
-  <div class="ch-head"><span class="ch-no">02</span><div><p class="ch-title">Surfvote量産期</p><p class="ch-period">2023–2024.7</p></div></div>
-  <h2 class="msg">月20〜30本、社会課題を問い続けた</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">論点の壁：この期間のSurfvote記事から30件を日付順に等間隔で抽出</figcaption>
-    <div class="chart" id="chart-wallstrip"></div>
-    <div class="wall" id="wall"></div>
-    <button type="button" class="more wall-more" id="wall-more" hidden>30件すべてを表示</button>
-  </figure>
-  <div class="body" id="s03-body"></div>
-  <ol class="tl" data-chapter="2"></ol>
-</section>
-
-<section class="sec chapter" id="s04" data-label="04 第3章">
-  <div class="ch-head"><span class="ch-no">03</span><div><p class="ch-title">QommonsAI誕生と体制転換</p><p class="ch-period">2024.8–2025.4</p></div></div>
-  <h2 class="msg">4か月で作り、型ごと立ち上げた</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">QommonsAI 立ち上げの工程</figcaption>
-    <ol class="steps" id="steps"></ol>
-    <p class="steps-sum" id="steps-sum"></p>
-  </figure>
-  <div class="body" id="s04-body"></div>
-  <ol class="tl" data-chapter="3"></ol>
-</section>
-
-<section class="sec chapter" id="s05" data-label="05 第4章">
-  <div class="ch-head"><span class="ch-no">04</span><div><p class="ch-title">急拡大</p><p class="ch-period">2025.5–2025.12</p></div></div>
-  <h2 class="msg">型を量産し、1年で600自治体へ</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">導入自治体数（2025年区間の拡大）と、同時期の主な出来事</figcaption>
-    <div class="chart" id="chart-zoom"></div>
-    <ol class="anno-list" id="zoom-notes"></ol>
-  </figure>
-  <div class="body" id="s05-body"></div>
-  <ol class="tl" data-chapter="4"></ol>
-</section>
-
-<section class="sec chapter" id="s06" data-label="06 第5章">
-  <div class="ch-head"><span class="ch-no">05</span><div><p class="ch-title">基盤化・エコシステム化</p><p class="ch-period">2026</p></div></div>
-  <h2 class="msg">無料のAIから、行政のプラットフォームへ</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">2026年時点の関係図（自社発表から構成）</figcaption>
-    <div class="chart" id="chart-eco"></div>
-    <ul class="eco-src" id="eco-src"></ul>
-  </figure>
-  <div class="body" id="s06-body"></div>
-  <ol class="tl" data-chapter="5"></ol>
-</section>
-
-<section class="sec" id="s07" data-label="07 全国">
-  <p class="sec-label"><span class="sec-no">07</span>全国</p>
-  <h2 class="msg">北海道から九州まで、研修で回っている</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">都道府県別の研修＋協定件数（自社発表116件）</figcaption>
-    <ul class="legend" id="legend-tiles"></ul>
-    <div class="tiles-wrap">
-      <div class="chart" id="chart-tiles"></div>
-      <div class="tile-panel" id="tile-panel" aria-live="polite"></div>
-    </div>
-  </figure>
-  <div class="body" id="s07-body"></div>
-</section>
-
-<section class="sec" id="s08" data-label="08 論点">
-  <p class="sec-label"><span class="sec-no">08</span>経営企画の論点</p>
-  <h2 class="msg">計画と実績の差が、経営企画の起点になる</h2>
-  <figure class="fig">
-    <figcaption class="fig-cap">公言目標と実績：導入自治体数</figcaption>
-    <ul class="legend" id="legend-targets"></ul>
-    <div id="targets-num"></div>
-  </figure>
-  <h3 class="sub">定性目標の進捗</h3>
-  <ul class="qual" id="targets-qual"></ul>
-  <h3 class="sub">入社後に確認したい問い</h3>
-  <ol class="questions" id="questions"></ol>
-</section>
-
-<section class="sec" id="s09" data-label="09 アーカイブ">
-  <p class="sec-label"><span class="sec-no">09</span>アーカイブ</p>
-  <h2 class="msg">全ての出来事は、ここから原文に戻れる</h2>
-  <form class="filters" id="filters" role="search" onsubmit="return false">
-    <label>テーマ<select id="f-theme"></select></label>
-    <label>年<select id="f-year"></select></label>
-    <label>出典<select id="f-source"></select></label>
-    <label class="kw">キーワード<input type="search" id="f-q" placeholder="例：協定、北海道、PLaMo"></label>
-  </form>
-  <p class="month-tag" id="archive-month" hidden></p>
-  <p class="count" id="archive-count"></p>
-  <ol class="archive" id="archive"></ol>
-  <button type="button" class="more" id="archive-more">もっと見る</button>
-</section>
-
-<footer class="foot">
-  <p>出典：Polimill株式会社 自社サイト（polimill.jp）および PR TIMES 掲載の同社リリース。収録期間 2021年10月26日〜2026年10月6日。テーマ分類は暫定。</p>
-</footer>
-
 </main>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="assets/js/data.js?v=2"></script>
-<script src="assets/js/main.js?v=2"></script>
+<script src="assets/js/data.js?v=4"></script>
+<script src="assets/js/core.js?v=4"></script>
+<script src="assets/js/site.js?v=4"></script>
+<script src="assets/js/charts/adoption.js?v=4"></script>
+<script src="assets/js/charts/monthly.js?v=4"></script>
+<script src="assets/js/charts/chapters.js?v=4"></script>
+<script src="assets/js/charts/tiles.js?v=4"></script>
+<script src="assets/js/charts/targets.js?v=4"></script>
+<script src="assets/js/charts/timeline.js?v=4"></script>
+<script src="assets/js/charts/archive.js?v=4"></script>
+<script src="assets/js/boot.js?v=4"></script>
 <script>
   if (/[?&]check\b/.test(location.search)) {
-    var s = document.createElement('script'); s.src = 'assets/js/check.js?v=2'; document.body.appendChild(s);
+    var s = document.createElement('script'); s.src = 'assets/js/check.js?v=4'; document.body.appendChild(s);
   }
 </script>
 </body>

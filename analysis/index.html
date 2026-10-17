@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分析｜Polimill 5年の年表</title>
+<meta name="description" content="発信構成、公言目標と実績、全国の研修・協定の分布を比べ、入社後に確認したい問いにつなげる。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=4">
+</head>
+<body data-page="analysis">
+<a class="skip" href="#main">本文へ移動</a>
+<div id="site-head"></div>
+
+<div class="layout">
+<aside class="sidenav" id="sidenav" aria-label="サイト内の移動"></aside>
+
+<main id="main">
+<header class="page-head">
+  <h1 class="page-title">分析</h1>
+  <p class="lede">経営企画の論点として、発信の構成、公言目標と実績、全国の分布を比べ、入社後に確認したい問いにつなげる。</p>
+</header>
+
+<section class="sec" id="sec-composition" data-label="A 発信構成">
+  <p class="sec-label"><span class="sec-no">A</span>発信構成（旧「5年の地図」）</p>
+  <h2 class="msg">発信の主役は、SurfvoteからQommonsAIへ移った</h2>
+  <figure class="fig">
+    <figcaption class="fig-cap">月別の発信本数（全699件、テーマ別の積み上げ・左目盛）と導入自治体数（線・右目盛）。上の章の帯を押すとその章へ、月を押すとその月の記事一覧へ移動できる</figcaption>
+    <ul class="legend" id="legend-monthly"></ul>
+    <div class="chart" id="chart-monthly"></div>
+  </figure>
+  <div class="body" id="s01-body"></div>
+</section>
+
+<section class="sec" id="sec-targets" data-label="B 目標と実績">
+  <p class="sec-label"><span class="sec-no">B</span>目標と実績</p>
+  <h2 class="msg">計画と実績の差が、経営企画の起点になる</h2>
+  <figure class="fig">
+    <figcaption class="fig-cap">公言目標と実績：導入自治体数</figcaption>
+    <ul class="legend" id="legend-targets"></ul>
+    <div id="targets-num"></div>
+  </figure>
+  <h3 class="sub">定性目標の進捗</h3>
+  <ul class="qual" id="targets-qual"></ul>
+</section>
+
+<section class="sec" id="sec-regions" data-label="C 全国の分布">
+  <p class="sec-label"><span class="sec-no">C</span>全国の分布</p>
+  <h2 class="msg">北海道から九州まで、研修で回っている</h2>
+  <figure class="fig">
+    <figcaption class="fig-cap">都道府県別の研修＋協定件数（自社発表116件）</figcaption>
+    <ul class="legend" id="legend-tiles"></ul>
+    <div class="tiles-wrap">
+      <div class="chart" id="chart-tiles"></div>
+      <div class="tile-panel" id="tile-panel" aria-live="polite"></div>
+    </div>
+  </figure>
+  <div class="body" id="s07-body"></div>
+</section>
+
+<section class="sec" id="sec-questions" data-label="D 入社後に確認したい問い">
+  <p class="sec-label"><span class="sec-no">D</span>問い</p>
+  <h2 class="msg">入社後に確認したい問い</h2>
+  <ol class="questions" id="questions"></ol>
+</section>
+</main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="../assets/js/data.js?v=4"></script>
+<script src="../assets/js/core.js?v=4"></script>
+<script src="../assets/js/site.js?v=4"></script>
+<script src="../assets/js/charts/adoption.js?v=4"></script>
+<script src="../assets/js/charts/monthly.js?v=4"></script>
+<script src="../assets/js/charts/chapters.js?v=4"></script>
+<script src="../assets/js/charts/tiles.js?v=4"></script>
+<script src="../assets/js/charts/targets.js?v=4"></script>
+<script src="../assets/js/charts/timeline.js?v=4"></script>
+<script src="../assets/js/charts/archive.js?v=4"></script>
+<script src="../assets/js/boot.js?v=4"></script>
+<script>
+  if (/[?&]check\b/.test(location.search)) {
+    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=4'; document.body.appendChild(s);
+  }
+</script>
+</body>
+</html>

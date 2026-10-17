@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>アーカイブ｜Polimill 5年の年表</title>
+<meta name="description" content="Polimill株式会社の自社発表699件を、テーマ・年・出典・キーワードで絞り込んで原文に戻れる一覧。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=4">
+</head>
+<body data-page="archive">
+<a class="skip" href="#main">本文へ移動</a>
+<div id="site-head"></div>
+
+<div class="layout">
+<aside class="sidenav" id="sidenav" aria-label="サイト内の移動"></aside>
+
+<main id="main">
+<section class="sec" id="archive-top">
+  <p class="sec-label">アーカイブ</p>
+  <h1 class="msg">全ての出来事は、ここから原文に戻れる</h1>
+  <form class="filters" id="filters" role="search" onsubmit="return false">
+    <label>テーマ<select id="f-theme"></select></label>
+    <label>年<select id="f-year"></select></label>
+    <label>出典<select id="f-source"></select></label>
+    <label class="kw">キーワード<input type="search" id="f-q" placeholder="例：協定、北海道、PLaMo"></label>
+  </form>
+  <p class="month-tag" id="archive-month" hidden></p>
+  <p class="count" id="archive-count" aria-live="polite"></p>
+  <ol class="archive" id="archive"></ol>
+  <button type="button" class="more" id="archive-more">もっと見る</button>
+</section>
+</main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="../assets/js/data.js?v=4"></script>
+<script src="../assets/js/core.js?v=4"></script>
+<script src="../assets/js/site.js?v=4"></script>
+<script src="../assets/js/charts/adoption.js?v=4"></script>
+<script src="../assets/js/charts/monthly.js?v=4"></script>
+<script src="../assets/js/charts/chapters.js?v=4"></script>
+<script src="../assets/js/charts/tiles.js?v=4"></script>
+<script src="../assets/js/charts/targets.js?v=4"></script>
+<script src="../assets/js/charts/timeline.js?v=4"></script>
+<script src="../assets/js/charts/archive.js?v=4"></script>
+<script src="../assets/js/boot.js?v=4"></script>
+<script>
+  if (/[?&]check\b/.test(location.search)) {
+    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=4'; document.body.appendChild(s);
+  }
+</script>
+</body>
+</html>

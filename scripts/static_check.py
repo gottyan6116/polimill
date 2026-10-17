@@ -13,7 +13,12 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OWN = [ROOT / "index.html", ROOT / "assets/css/style.css", ROOT / "assets/js/main.js", ROOT / "assets/js/check.js"]
+SKIP = {"node_modules", "audit", ".git", "polimill_data"}
+OWN = sorted(
+    [p for p in ROOT.rglob("index.html") if not SKIP & set(p.relative_to(ROOT).parts)]
+    + [ROOT / "assets/css/style.css"]
+    + [p for p in (ROOT / "assets/js").rglob("*.js") if p.name != "data.js"]
+)
 # emoji / pictograph code-point ranges (written as numbers to keep this file plain ASCII)
 EMOJI_RANGES = [(0x1F000, 0x1FAFF), (0x2600, 0x27BF), (0x2B00, 0x2BFF), (0xFE0F, 0xFE0F), (0x200D, 0x200D), (0x2190, 0x21FF), (0x2300, 0x23FF)]
 EMOJI = re.compile("[" + "".join(re.escape(chr(a)) + "-" + re.escape(chr(b)) for a, b in EMOJI_RANGES) + "]")
@@ -53,8 +58,8 @@ with open(ROOT / "polimill_data/0_all_news_699.csv", encoding="utf-8-sig", newli
     rows = list(csv.reader(f))[1:]
 check("data.js news == 0_all_news_699.csv", [[n["date"], n["theme"], n["title"], n["source"], n["url"]] for n in payload["news"]] == rows, f"{len(rows)} rows")
 
-# literals in main.js that must exist in the data
-main = (ROOT / "assets/js/main.js").read_text(encoding="utf-8")
+# literals in the page scripts that must exist in the data
+main = "".join(p.read_text(encoding="utf-8") for p in OWN if p.suffix == ".js")
 heads = {m["date"]: [] for m in src["milestones"]}
 for m in src["milestones"]:
     heads[m["date"]].append(m["headline"])
