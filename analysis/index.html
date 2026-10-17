@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=5">
+<link rel="stylesheet" href="../assets/css/style.css?v=7">
 </head>
 <body data-page="analysis">
 <a class="skip" href="#main">本文へ移動</a>
@@ -20,7 +20,7 @@
 <main id="main">
 <header class="page-head">
   <h1 class="page-title">分析</h1>
-  <p class="lede">経営企画の論点として、発信の構成、公言目標と実績、全国の分布を比べ、入社後に確認したい問いにつなげる。</p>
+  <p class="lede">経営企画の論点として、発信の構成、成長の型、公言目標と実績、全国の分布を比べ、入社後に確認したい問いにつなげる。</p>
 </header>
 
 <section class="sec" id="sec-composition" data-label="A 発信構成">
@@ -34,20 +34,42 @@
   <div class="body" id="s01-body"></div>
 </section>
 
-<section class="sec" id="sec-targets" data-label="B 目標と実績">
-  <p class="sec-label"><span class="sec-no">B</span>目標と実績</p>
+<section class="sec" id="sec-growth" data-label="B 成長の型">
+  <p class="sec-label"><span class="sec-no">B</span>成長の型</p>
+  <h2 class="msg">無料枠・研修・協定の循環で広げ、その上に収益の層を構想している</h2>
+  <figure class="fig">
+    <figcaption class="fig-cap">成長の型（実線＝公開情報で確認できる、破線＝確かめられない・構想）</figcaption>
+    <div class="chart" id="chart-growth"></div>
+    <div class="growth-list" id="growth-list"></div>
+  </figure>
+  <figure class="fig">
+    <figcaption class="fig-cap">並行タイムライン：拡大の速度に、組織と信頼の整備を後から追いつかせている</figcaption>
+    <ul class="legend" id="legend-parallel"></ul>
+    <div class="chart" id="chart-parallel"></div>
+    <details class="alt-table" id="parallel-table"></details>
+  </figure>
+</section>
+
+<section class="sec" id="sec-targets" data-label="C 目標と実績">
+  <p class="sec-label"><span class="sec-no">C</span>目標と実績</p>
   <h2 class="msg">計画と実績の差が、経営企画の起点になる</h2>
   <figure class="fig">
     <figcaption class="fig-cap">公言目標と実績：導入自治体数</figcaption>
     <ul class="legend" id="legend-targets"></ul>
     <div id="targets-num"></div>
   </figure>
+  <figure class="fig">
+    <figcaption class="fig-cap">このペースが続いた場合：2026年5月の約800から、月40・月50で伸びたときの試算線</figcaption>
+    <ul class="legend" id="legend-projection"></ul>
+    <div class="chart" id="chart-projection"></div>
+    <div class="body" id="projection-text"></div>
+  </figure>
   <h3 class="sub">定性目標の進捗</h3>
   <ul class="qual" id="targets-qual"></ul>
 </section>
 
-<section class="sec" id="sec-regions" data-label="C 全国の分布">
-  <p class="sec-label"><span class="sec-no">C</span>全国の分布</p>
+<section class="sec" id="sec-regions" data-label="D 全国の分布">
+  <p class="sec-label"><span class="sec-no">D</span>全国の分布</p>
   <h2 class="msg">北海道から九州まで、研修で回っている</h2>
   <figure class="fig">
     <figcaption class="fig-cap">都道府県別の研修＋協定件数（自社発表116件）</figcaption>
@@ -60,8 +82,8 @@
   <div class="body" id="s07-body"></div>
 </section>
 
-<section class="sec" id="sec-questions" data-label="D 入社後に確認したい問い">
-  <p class="sec-label"><span class="sec-no">D</span>問い</p>
+<section class="sec" id="sec-questions" data-label="E 入社後に確認したい問い">
+  <p class="sec-label"><span class="sec-no">E</span>問い</p>
   <h2 class="msg">入社後に確認したい問い</h2>
   <ol class="questions" id="questions"></ol>
 </section>
@@ -69,22 +91,23 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script src="../assets/js/data.js?v=5"></script>
-<script src="../assets/js/core.js?v=5"></script>
-<script src="../assets/js/site.js?v=5"></script>
-<script src="../assets/js/notes.js?v=5"></script>
-<script src="../assets/js/charts/adoption.js?v=5"></script>
-<script src="../assets/js/charts/monthly.js?v=5"></script>
-<script src="../assets/js/charts/chapters.js?v=5"></script>
-<script src="../assets/js/charts/tiles.js?v=5"></script>
-<script src="../assets/js/charts/targets.js?v=5"></script>
-<script src="../assets/js/charts/timeline.js?v=5"></script>
-<script src="../assets/js/charts/archive.js?v=5"></script>
-<script src="../assets/js/charts/method.js?v=5"></script>
-<script src="../assets/js/boot.js?v=5"></script>
+<script src="../assets/js/data.js?v=7"></script>
+<script src="../assets/js/core.js?v=7"></script>
+<script src="../assets/js/site.js?v=7"></script>
+<script src="../assets/js/notes.js?v=7"></script>
+<script src="../assets/js/charts/adoption.js?v=7"></script>
+<script src="../assets/js/charts/monthly.js?v=7"></script>
+<script src="../assets/js/charts/chapters.js?v=7"></script>
+<script src="../assets/js/charts/tiles.js?v=7"></script>
+<script src="../assets/js/charts/growth.js?v=7"></script>
+<script src="../assets/js/charts/targets.js?v=7"></script>
+<script src="../assets/js/charts/timeline.js?v=7"></script>
+<script src="../assets/js/charts/archive.js?v=7"></script>
+<script src="../assets/js/charts/method.js?v=7"></script>
+<script src="../assets/js/boot.js?v=7"></script>
 <script>
   if (/[?&]check\b/.test(location.search)) {
-    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=5'; document.body.appendChild(s);
+    var s = document.createElement('script'); s.src = '../assets/js/check.js?v=7'; document.body.appendChild(s);
   }
 </script>
 </body>

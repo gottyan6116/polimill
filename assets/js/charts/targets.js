@@ -1,7 +1,7 @@
 /* Analysis B — targets vs actuals; Analysis D — questions to confirm after joining. */
 (function (PM) {
   'use strict';
-  const { D, parse, fmtJ, nf, esc, ext, el, dot, ms, adoption, lastAdopt, svgFor, firstNum } = PM;
+  const { D, parse, fmtJ, fmtYM, nf, esc, ext, el, dot, ms, adoption, lastAdopt, svgFor, firstNum } = PM;
 
   function renderTargets() {
     PM.legend('legend-targets', [{ label: '目標（破線枠）', cls: 'sw-dash' }, { label: '実績（塗り）', color: '#67C59F' }, { label: '期中修正後の目標', color: '#111', cls: '' }]);
@@ -71,7 +71,67 @@
     if (animate) bar.attr('width', 0).transition().duration(900).ease(d3.easeCubicOut).attr('width', x(actual));
   }
 
+  // ---------- pace projection from the last announcement (estimate) ----------
+  const GOAL = 1200;
+  PM.PACES = [40, 50].map(p => {
+    const monthsNeeded = (GOAL - lastAdopt.municipalities) / p;
+    const reach = d3.timeMonth.offset(lastAdopt.t, Math.ceil(monthsNeeded));
+    const yearEnd = new Date(2026, 11, 31);
+    const atYearEnd = lastAdopt.municipalities + p * (d3.timeDay.count(lastAdopt.t, yearEnd) / 30.44);
+    return { p, monthsNeeded, reach, atYearEnd };
+  });
+
+  function projectionChart(node, animate) {
+    const W = node.clientWidth, narrow = W < 560;
+    const H = narrow ? 300 : 340, m = { t: 20, r: narrow ? 10 : 20, b: 26, l: 40 };
+    const iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const x = d3.scaleTime().domain([new Date(2024, 6, 1), new Date(2027, 5, 30)]).range([0, iw]);
+    const y = d3.scaleLinear().domain([0, 1300]).range([ih, 0]);
+    const svg = svgFor(node, W, H, '導入自治体数の発表値と、2026年5月の約800から月40・月50で伸びた場合の試算線');
+    const g = svg.append('g').attr('transform', `translate(${m.l},${m.t})`);
+    const yt = [400, 800, 1200];
+    g.append('g').attr('class', 'grid').selectAll('line').data(yt).join('line').attr('x1', 0).attr('x2', iw).attr('y1', y).attr('y2', y);
+    g.append('g').selectAll('text').data(yt).join('text').attr('class', 'tick-label').attr('x', -6).attr('y', d => y(d) + 3).attr('text-anchor', 'end').text(nf);
+    const xa = g.append('g').attr('class', 'axis').attr('transform', `translate(0,${ih})`)
+      .call(d3.axisBottom(x).ticks(d3.timeMonth.every(narrow ? 12 : 6)).tickFormat(PM.yearMonthTick).tickSize(3));
+    xa.select('.domain').attr('stroke', '#111');
+    // targets (dashed squares at the year end they refer to)
+    const t25 = D.targets.find(t => t.item.startsWith('2025年 ')), t26 = D.targets.find(t => t.item.startsWith('2026年'));
+    const goals = [{ t: new Date(2025, 11, 31), v: firstNum(t25.target), label: `2025年目標 ${nf(firstNum(t25.target))}超`, src: t25 },
+      { t: new Date(2026, 11, 31), v: firstNum(t26.target), label: `2026年目標 ${nf(firstNum(t26.target))}`, src: t26 }];
+    const gg = g.append('g').selectAll('g').data(goals).join('g').attr('class', 'goal').attr('transform', d => `translate(${x(d.t)},${y(d.v)})`);
+    gg.append('rect').attr('x', -5).attr('y', -5).attr('width', 10).attr('height', 10).attr('fill', '#fff').attr('stroke', '#111').attr('stroke-dasharray', '2 2');
+    gg.append('text').attr('class', 'lbl-s halo').attr('x', -8).attr('y', -8).attr('text-anchor', 'end').text(d => d.label);
+    PM.bindTip(gg, d => `<b>${esc(d.src.item)}</b>${PM.conf('claim')}<br>目標：${esc(d.src.target)}（${fmtJ(parse(d.src.stated_on))}表明）<p class="src">出典：${ext(d.src.target_url, '目標の発表')}</p>`);
+    // announced values
+    const line = d3.line().x(d => x(d.t)).y(d => y(d.municipalities));
+    g.append('path').datum(adoption).attr('d', line).attr('fill', 'none').attr('stroke', '#67C59F').attr('stroke-width', 2);
+    PM.bindTip(g.append('g').selectAll('circle').data(adoption).join('circle').attr('class', 'pt').attr('data-date', d => d.date).attr('data-v', d => d.municipalities)
+      .attr('cx', d => x(d.t)).attr('cy', d => y(d.municipalities)).attr('r', 3).attr('fill', '#fff').attr('stroke', '#2F7D5B'), PM.adoptionTip);
+    // projections (estimate): dashed grey lines up to 1,200
+    const pj = g.append('g');
+    PM.PACES.forEach((p, i) => {
+      pj.append('path').attr('class', 'proj').attr('data-pace', p.p).attr('data-reach', PM.keyM(p.reach))
+        .attr('d', `M${x(lastAdopt.t)},${y(lastAdopt.municipalities)} L${x(p.reach)},${y(GOAL)}`)
+        .attr('stroke', '#6B6B6B').attr('stroke-width', 1.5).attr('stroke-dasharray', i ? '2 3' : '6 4').attr('fill', 'none');
+      pj.append('circle').attr('cx', x(p.reach)).attr('cy', y(GOAL)).attr('r', 3).attr('fill', '#6B6B6B');
+      pj.append('text').attr('class', 'lbl-s halo').attr('x', x(p.reach) - 6).attr('y', y(GOAL) + (i ? 16 : 30)).attr('text-anchor', 'end')
+        .text(`月${p.p}：${PM.fmtYM(p.reach)}ごろ`);
+    });
+    pj.append('text').attr('class', 'lbl-s halo').attr('x', x(lastAdopt.t) + 6).attr('y', y(lastAdopt.municipalities) + 16).text('試算');
+    if (animate) pj.attr('opacity', 0).transition().delay(300).duration(600).attr('opacity', 1);
+  }
+
+  function renderProjectionText() {
+    const [a, b] = PM.PACES;
+    el('projection-text').innerHTML = `
+      <p>${fmtYM(lastAdopt.t)}の約${nf(lastAdopt.municipalities)}から月${a.p}自治体ずつ増えると1,200に届くのは${PM.fmtYM(a.reach)}ごろ、月${b.p}なら${PM.fmtYM(b.reach)}ごろ。2026年末の時点では、それぞれ約${nf(PM.round10(a.atYearEnd))}・約${nf(PM.round10(b.atYearEnd))}。${PM.conf('est')}</p>`;
+  }
+
   PM.initTargets = () => {
+    PM.legend('legend-projection', [{ label: '導入自治体数（発表値）', color: '#67C59F' }, { label: '月40の試算', cls: 'sw-dash-l' }, { label: '月50の試算', cls: 'sw-dot-l' }, { label: '公言目標', cls: 'sw-goal' }]);
+    if (el('projection-text')) { renderProjectionText(); PM.figNotes('projection', el('chart-projection').closest('figure')); }
+    PM.register(el('chart-projection'), projectionChart);
     if (el('targets-num')) renderTargets();
     if (el('questions')) renderQuestions();
   };

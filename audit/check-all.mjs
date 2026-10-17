@@ -12,7 +12,7 @@ if (shots) fs.mkdirSync('audit/screenshots', { recursive: true });
 const server = await serve(PORT);
 const browser = await chromium.launch();
 let fail = 0;
-const required = new Set(['2a', '2f', '2g', '2h', '2i', '2j', '2k', '2l', '2m', '3', '4', '4b', '5c']);
+const required = new Set(['2a', '2f', '2g', '2h', '2i', '2j', '2k', '2l', '2m', '3', '4', '4b', '5c', '7a', '7b', '7c', '7d']);
 const seen = new Set();
 
 for (const p of listPages()) {

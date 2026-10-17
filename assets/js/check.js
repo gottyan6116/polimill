@@ -78,14 +78,48 @@
     const num = s => +String(s).replace(/,/g, '').match(/\d+/)[0];
     const tg = [...document.querySelectorAll('g.tgt')].map(g => [+g.dataset.target, +g.dataset.actual]);
     const t25 = json.targets.find(t => t.item.startsWith('2025年 ')), t26 = json.targets.find(t => t.item.startsWith('2026年'));
-    ok('2i 分析B 目標と実績（2025: 1,000超→約600、2026: 1,200→約800）',
+    ok('2i 分析C 目標と実績（2025: 1,000超→約600、2026: 1,200→約800）',
       JSON.stringify(tg) === JSON.stringify([[num(t25.target), num(t25.actual)], [num(t26.target), num(t26.actual)]]) && JSON.stringify(tg) === '[[1000,600],[1200,800]]', JSON.stringify(tg));
   }
   if (has('#targets-qual')) {
     const qual = [...document.querySelectorAll('#targets-qual li')].map(li => li.dataset.item);
-    ok('2j 分析B 定性項目（LGWAN／Qommons ONE／Surfvote 2.0）', ['LGWAN接続対応', 'Qommons ONE', 'Surfvote 2.0'].every(i => qual.includes(i)), qual.join(','));
+    ok('2j 分析C 定性項目（LGWAN／Qommons ONE／Surfvote 2.0）', ['LGWAN接続対応', 'Qommons ONE', 'Surfvote 2.0'].every(i => qual.includes(i)), qual.join(','));
   }
-  if (has('#questions')) ok('2k 分析D 問い4つ', document.querySelectorAll('#questions li').length === 4);
+  if (has('#questions')) ok('2k 分析E 問い4つ', document.querySelectorAll('#questions li').length === 4);
+
+  // ---- 7. added visuals ----
+  if (has('#chart-growth')) {
+    const nodes = [...document.querySelectorAll('#chart-growth g.gnode')];
+    const dashed = nodes.filter(n => n.dataset.solid === 'false').map(n => n.dataset.node);
+    ok('7a 分析B 成長の型（5要素＋収益の層、定着は破線）', nodes.length === 5 && has('#chart-growth .g-rev') && dashed.join() === 'stay' &&
+      document.querySelectorAll('#growth-list .growth-nodes > li').length === 6, `nodes=${nodes.length} dashed=${dashed}`);
+  }
+  if (has('#chart-parallel')) {
+    const p = ptsOK('chart-parallel', json.adoption);
+    const lanes = [...document.querySelectorAll('#chart-parallel .lane-l')].map(t => t.textContent);
+    const fund = document.querySelectorAll('#chart-parallel .fund-pt').length;
+    const heads = ['約3,000万円', '3,500万円超', '7,500万円超', '約1.3億円', '1.7億円超', '2億円を超える', '5億円超'];
+    ok('7b 分析B 並行タイムライン（5系列・導入12点・累計調達7点）', p.pass && lanes.join() === '導入自治体数,累計調達額,正社員数・組織,認証取得,主なプロダクト' && fund === 7 &&
+      heads.every(h => json.milestones.some(m => m.headline.includes(h))) && has('#chart-parallel .fund-sa'), `${p.detail} lanes=${lanes.length} fund=${fund}`);
+  }
+  if (has('#chart-projection')) {
+    const reach = [...document.querySelectorAll('#chart-projection path.proj')].map(p => [+p.dataset.pace, p.dataset.reach]);
+    const want = [40, 50].map(pc => { const d = new Date(last.date); d.setMonth(d.getMonth() + Math.ceil((1200 - last.municipalities) / pc)); return [pc, d.toISOString().slice(0, 7)]; });
+    ok('7c 分析C 試算線（800起点、月40・月50で1,200到達）', JSON.stringify(reach) === JSON.stringify(want) && has('#chart-projection .goal') &&
+      document.querySelector('#projection-text .conf-est'), JSON.stringify(reach));
+  }
+  if (has('#nowbar')) {
+    const items = [...document.querySelectorAll('.tl li[data-date]')];
+    window.scrollTo(0, document.body.scrollHeight);
+    window.dispatchEvent(new Event('scroll'));
+    await new Promise(r => setTimeout(r, 200));
+    const bar = document.getElementById('nowbar'), date = bar.dataset.date;
+    const a = json.adoption.filter(x => x.date <= date).pop();
+    const shownA = bar.querySelector('.nb-v b').textContent;
+    window.scrollTo(0, 0);
+    ok('7d 章 現在地表示（表示中の出来事の時点の発表値）', date === items[items.length - 1].dataset.date && (a ? shownA === a.municipalities.toLocaleString('en-US') : shownA === '発表前'),
+      `date=${date} shown=${shownA} json=${a ? a.municipalities : '-'}`);
+  }
 
   // ---- 3. tile map ----
   if (has('#chart-tiles')) {
@@ -94,7 +128,7 @@
     const svgR = document.querySelector('#chart-tiles svg').getBoundingClientRect();
     const visible = tiles.filter(t => { const r = t.getBoundingClientRect(); return r.width > 10 && r.left >= svgR.left - 0.5 && r.right <= svgR.right + 0.5; });
     const posKey = new Set(tiles.map(t => t.getAttribute('transform')));
-    ok('3 分析C タイルマップ 47都道府県すべて表示', tiles.length === 47 && visible.length === 47 && posKey.size === 47 && Object.keys(json.prefectures).every(p => names.includes(p)),
+    ok('3 分析D タイルマップ 47都道府県すべて表示', tiles.length === 47 && visible.length === 47 && posKey.size === 47 && Object.keys(json.prefectures).every(p => names.includes(p)),
       `tiles=${tiles.length} visible=${visible.length} uniquePos=${posKey.size}`);
   }
 

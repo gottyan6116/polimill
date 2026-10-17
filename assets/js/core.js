@@ -135,6 +135,19 @@
     { date: '2022-12-13', v: 1.3e8, label: '約1.3億円', needle: '約1.3億円' },
   ].map(f => Object.assign(f, { t: parse(f.date), m: ms(f.date, f.needle) }));
 
+  // every cumulative-funding figure stated in a milestone headline (labels are the headline wording)
+  PM.FUND_CUM = [
+    { date: '2021-10-26', v: 3000e4, label: '約3,000万円', needle: '約3,000万円' },
+    { date: '2021-11-30', v: 3500e4, label: '3,500万円超', needle: '3,500万円超' },
+    { date: '2022-05-31', v: 7500e4, label: '7,500万円超', needle: '7,500万円超' },
+    { date: '2022-12-13', v: 1.3e8, label: '約1.3億円', needle: '約1.3億円' },
+    { date: '2023-04-25', v: 1.7e8, label: '1.7億円超', needle: '1.7億円超' },
+    { date: '2023-07-31', v: 2e8, label: '2億円超', needle: '2億円を超える' },
+    { date: '2024-10-03', v: 5e8, label: '5億円超', needle: '5億円超' },
+  ].map(f => Object.assign(f, { t: parse(f.date), m: ms(f.date, f.needle) }));
+  // Series A: amount of the round only; no cumulative total was announced
+  PM.SERIES_A = { date: '2026-01-19', t: parse('2026-01-19'), label: 'シリーズA 約6.35億円', m: ms('2026-01-19', '約6.35億円') };
+
   PM.STEPS = [
     { when: '2024.3', label: '開発開始', m: ms('2024-08-02'), note: '2024年8月2日発表の「開発開始から約4か月」から逆算' },
     { when: '2024.8', label: 'プレビュー版を約50自治体・省庁へ', m: ms('2024-08-02') },

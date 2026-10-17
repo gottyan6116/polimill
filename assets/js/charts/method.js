@@ -50,6 +50,9 @@
           <p>最新の導入自治体数 ÷ 最初の値。${nf(p3.municipalities)} ÷ ${first.municipalities} = ${Math.round(p3.municipalities / first.municipalities)}倍（${fmtJ(first.t)}〜${fmtJ(p3.t)}）。</p></li>
         <li><b>目標比</b>${PM.conf('est')}
           <p>実績 ÷ 公言目標。2025年：${PM.firstNum(t25.actual)} ÷ ${nf(PM.firstNum(t25.target))} = ${pct(t25)}%。2026年：${PM.firstNum(t26.actual)} ÷ ${nf(PM.firstNum(t26.target))} = ${pct(t26)}%（${fmtJ(parse(t26.actual_as_of))}時点）。</p></li>
+        <li><b>試算線（1,200自治体への到達時期）</b>${PM.conf('est')}
+          <p>到達までの月数 =（1,200 − ${fmtJ(p3.t)}の${p3.municipalities}）÷ 月あたりの増加数。月数を切り上げ、起点の月に足す。2026年末の値 = ${p3.municipalities} + 月あたりの増加数 ×（${fmtJ(p3.t)}〜2026年12月31日の日数 ÷ 30.44）。</p>
+          <p class="src">${(PM.PACES || []).map(p => `月${p.p}：${(1200 - p3.municipalities) / p.p}か月 → ${PM.fmtYM(p.reach)}ごろ、2026年末 ${p.atYearEnd.toFixed(1)}（約${nf(PM.round10(p.atYearEnd))}）`).join('<br>')}</p></li>
         <li><b>開発開始（2024.3）</b>${PM.conf('est')}
           <p>${esc(PM.STEPS[0].note)}。</p></li>
         <li><b>章ごとの発信本数と比率</b>${PM.conf('fact')}

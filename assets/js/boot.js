@@ -6,6 +6,7 @@
   PM.initMonthly();
   PM.initChapters();
   PM.initTiles();
+  PM.initGrowth();
   PM.initTargets();
   PM.initTimeline();
   PM.initArchive();

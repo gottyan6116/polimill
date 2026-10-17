@@ -43,9 +43,47 @@
       </ol>`;
   }
 
+  // chapter pages: sticky "where are we" bar — latest announced values as of the event in view
+  PM.asOf = date => {
+    const a = adoption.filter(x => x.date <= date).pop();
+    const f = PM.FUND_CUM.filter(x => x.date <= date).pop();
+    const sa = date >= PM.SERIES_A.date ? PM.SERIES_A : null;
+    return { a, f, sa };
+  };
+  function initNowBar() {
+    const sec = document.querySelector('.chapter[data-chapter]');
+    if (!sec) return;
+    const c = PM.CH[+sec.dataset.chapter - 1];
+    const items = [...sec.querySelectorAll('.tl li[data-date]')];
+    sec.querySelector('.ch-stat').insertAdjacentHTML('afterend', '<div class="nowbar" id="nowbar" aria-live="off"></div>');
+    const bar = PM.el('nowbar');
+    let shown = null;
+    const render = date => {
+      if (date === shown) return;
+      shown = date;
+      const { a, f, sa } = PM.asOf(date);
+      bar.dataset.date = date;
+      bar.innerHTML = `<span class="nb-ch">第${c.n}章</span><span class="nb-d">${dot(date)}時点</span>` +
+        `<span class="nb-v">導入自治体 ${a ? `<b>${nf(a.municipalities)}</b><small>（${dot(a.date)}発表）</small>` : '<b>発表前</b>'}</span>` +
+        `<span class="nb-v">累計調達 ${f ? `<b>${esc(f.label)}</b><small>（${dot(f.date)}発表）</small>` : '<b>発表前</b>'}` +
+        `${sa ? `<small>＋${esc(sa.label)}（${dot(sa.date)}、累計は未発表）</small>` : ''}</span>`;
+    };
+    const onScroll = () => {
+      const lim = window.innerHeight * 0.45;
+      let cur = items[0];
+      items.forEach(li => { if (li.getBoundingClientRect().top <= lim) cur = li; });
+      // at the end of the page the last events can never reach the line: treat them as reached
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) cur = items[items.length - 1];
+      render(cur ? cur.dataset.date : c.from + '-01');
+    };
+    window.addEventListener('scroll', PM.debounce(onScroll, 40), { passive: true });
+    onScroll();
+  }
+
   PM.initTimeline = () => {
     renderTimelines();
     renderChapterStats();
+    initNowBar();
     if (PM.el('minitl')) renderMiniTimeline();
   };
 })(window.PM);

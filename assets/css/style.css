@@ -440,3 +440,35 @@ sup.fn a { text-decoration: none; color: var(--ink-2); padding: 0 1px; }
 .note-group p { margin: 2px 0; color: var(--ink-2); }
 .sub-s { margin: 0 0 4px; font-size: 13px; font-weight: 700; }
 .sub-s a { text-decoration: none; }
+
+/* ---------- phase 4: growth loop, parallel timeline, projection, now bar ---------- */
+.sw-dia { width: 8px; height: 8px; border: 1.5px solid var(--gray-2); transform: rotate(45deg); background: var(--paper); }
+.sw-ring { width: 8px; height: 8px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); }
+.sw-dash-l { width: 18px; height: 0; border-top: 1.5px dashed var(--gray); }
+.sw-dot-l { width: 18px; height: 0; border-top: 1.5px dotted var(--gray); }
+.sw-goal { width: 9px; height: 9px; border: 1px dashed var(--ink); }
+.lane-l { font-size: 11px; font-weight: 700; fill: var(--ink-2); }
+.ev-l { font-size: 10px; fill: var(--ink-2); }
+.growth-list { margin-top: 14px; }
+.growth-nodes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.growth-nodes > li { padding: 10px 0; border-bottom: 0.5px solid var(--rule); font-size: 13px; }
+.growth-nodes p { margin: 2px 0; }
+.gn-h b { font-size: 15px; }
+.gn-s { margin-left: 8px; font-size: 11px; color: var(--gray); }
+.gn-ev { list-style: none; margin: 4px 0 0; padding: 0; font-size: 12px; color: var(--ink-2); }
+.gn-ev .d { color: var(--gray); margin-right: 8px; font-variant-numeric: tabular-nums; }
+.growth-edges { margin: 4px 0 0; padding-left: 18px; font-size: 12px; color: var(--ink-2); }
+.growth-edges li { margin: 0 0 4px; }
+.alt-table { margin-top: 10px; font-size: 12px; }
+.alt-table summary { cursor: pointer; color: var(--ink-2); }
+.alt-table td:nth-child(2) { white-space: nowrap; }
+.nowbar { position: sticky; top: 50px; z-index: 15; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; margin: 0 0 16px;
+  padding: 6px 0; background: var(--paper); border-top: 1px solid var(--ink); border-bottom: 0.5px solid var(--rule); font-size: 12px; }
+.nowbar .nb-ch { font-family: var(--serif); font-weight: 700; }
+.nowbar .nb-d { color: var(--gray); font-variant-numeric: tabular-nums; }
+.nowbar b { font-weight: 700; font-variant-numeric: tabular-nums; }
+.nowbar small { color: var(--gray); font-size: 11px; margin-left: 2px; }
+@media (min-width: 1100px) { .nowbar { top: 0; } }
+
+/* the nav must stick to the page, not to its short wrapper */
+#site-head { display: contents; }

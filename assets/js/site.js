@@ -8,7 +8,7 @@
     { id: 'top', path: '', label: 'トップ', short: 'トップ' },
     ...PM.CH.map(c => ({ id: 'ch' + c.n, path: c.path, label: `第${c.n}章 ${c.name}`, short: String(c.n), period: c.period })),
     { id: 'analysis', path: 'analysis/', label: '分析', short: '分析', sub: [
-      ['sec-composition', 'A 発信構成'], ['sec-targets', 'B 目標と実績'], ['sec-regions', 'C 全国の分布'], ['sec-questions', 'D 入社後に確認したい問い'],
+      ['sec-composition', 'A 発信構成'], ['sec-growth', 'B 成長の型'], ['sec-targets', 'C 目標と実績'], ['sec-regions', 'D 全国の分布'], ['sec-questions', 'E 入社後に確認したい問い'],
     ] },
     { id: 'archive', path: 'archive/', label: 'アーカイブ', short: 'アーカイブ' },
     { id: 'method', path: 'method/', label: 'データと方法', short: '方法', sub: [

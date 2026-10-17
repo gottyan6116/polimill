@@ -17,7 +17,7 @@
       { key: 'seriesA', label: 'シリーズA調達額', value: '約6.35', unit: '億円', value2: '評価額 約50億円', raw: '約6.35億円|約50億円',
         src: PM.srcLine(seriesA.source, seriesA.url, fmtJ(parse(seriesA.date)) + '発表', 'claim') },
       { key: 'events', label: '研修・協定', value: `${ev.length}`, unit: '件', value2: `${prefN}都道府県で実施`, raw: `${ev.length}|${prefN}`,
-        src: `<p class="src">${esc(fmtJ(parse(evLast)))}までの自社発表を集計${PM.conf('fact')}　<a href="${PM.href('analysis/#sec-regions')}">内訳は分析C 全国の分布へ</a></p>` },
+        src: `<p class="src">${esc(fmtJ(parse(evLast)))}までの自社発表を集計${PM.conf('fact')}　<a href="${PM.href('analysis/#sec-regions')}">内訳は分析D 全国の分布へ</a></p>` },
     ];
     el('metrics').innerHTML = items.map(i => `
       <div class="metric" data-key="${i.key}" data-raw="${esc(i.raw)}">

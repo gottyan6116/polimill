@@ -11,12 +11,13 @@
 #sec-calc	計算方法
 #sec-composition	A 発信構成
 #sec-files	データファイル
+#sec-growth	B 成長の型
 #sec-labels	確度ラベル
 #sec-notes	図の注記
-#sec-questions	D 入社後に確認したい問い
-#sec-regions	C 全国の分布
+#sec-questions	E 入社後に確認したい問い
+#sec-regions	D 全国の分布
 #sec-sources	出典
-#sec-targets	B 目標と実績
+#sec-targets	C 目標と実績
 #sec-themes	テーマ分類
 ../	Polimill 5年の年表 2021.10–2026.10
 ../	トップ
@@ -53,7 +54,9 @@
 ../../method/#sec-labels	試算
 ../analysis/	分析
 ../analysis/#sec-composition	分析A
-../analysis/#sec-regions	分析C
+../analysis/#sec-growth	分析B
+../analysis/#sec-regions	分析D
+../analysis/#sec-targets	分析C
 ../archive/	アーカイブ
 ../archive/	アーカイブ（全699件）
 ../chapters/1/	1
@@ -78,11 +81,12 @@
 ../method/#sec-labels	自社発表
 ../method/#sec-labels	試算
 analysis/	分析
-analysis/	分析比べて考える。発信構成、目標と実績、全国の分布、入社後に確認したい問い。
+analysis/	分析比べて考える。発信構成、成長の型、目標と実績、全国の分布、入社後に確認したい問い。
 analysis/#sec-composition	分析A 発信構成へ
-analysis/#sec-questions	分析D 問いへ
-analysis/#sec-regions	内訳は分析C 全国の分布へ
-analysis/#sec-targets	分析B 目標と実績へ
+analysis/#sec-growth	分析B 成長の型へ
+analysis/#sec-questions	分析E 問いへ
+analysis/#sec-regions	内訳は分析D 全国の分布へ
+analysis/#sec-targets	分析C 目標と実績へ
 archive/	アーカイブ
 archive/	アーカイブ検索して原典を引く。自社発表699件をテーマ・年・出典・キーワードで絞り込み。
 archive/	アーカイブ（全699件）
@@ -268,6 +272,7 @@ https://polimill.jp/20250630%ef%bc%8d1/	【平均満足度4.5☆】累計2,000�
 https://polimill.jp/20250630-2/	【行政向け生成AIシェアNo.1】QommonsAIが今年も自治体・公共Weekに登場！2025年夏も、全国で研修行脚中の谷口が“灼熱セミナー”を開催！
 https://polimill.jp/20250711%ef%bc%8d1/	【学校の教室にも、防犯カメラは必要だと思いますか？】Surfvoteで意見を募集中
 https://polimill.jp/20250711-1/	【投票開始】森友学園問題、第三者による再調査は必要か？あなたの意見を聞かせてください
+https://polimill.jp/20250711-2/	
 https://polimill.jp/20250711-2/	【行政向け生成AIシェアNo.1】250自治体が選んだQommonsAI、今年も自治体総合フェアに登場！
 https://polimill.jp/20250711-2/	自社サイト
 https://polimill.jp/20250723-1/	
@@ -279,6 +284,7 @@ https://polimill.jp/20250731-1/	【出展決定】行政シェアNo.1「QommonsA
 https://polimill.jp/20250801-1/	【出展報告】「まちづくりデザインWEEK2025」（7/24〜25・秋葉原UDX）に出展しました！
 https://polimill.jp/20250806%ef%bc%8d1/	
 https://polimill.jp/20250806%ef%bc%8d1/	QommonsAI ver.2.0「使いホーダイDX」を開始
+https://polimill.jp/20250806%ef%bc%8d1/	自社サイト
 https://polimill.jp/20250806%ef%bc%8d1/	行政シェアNo.1のQommonsAIが大型アップデート！ver.2.0で“使いホーダイDX”始動！！
 https://polimill.jp/20250806%ef%bc%8d3/	現職首長約70名が参加した自治体向けビジネスピッチ2025で当社代表取締役が大トリ登壇！
 https://polimill.jp/20250806-2/	
@@ -308,6 +314,7 @@ https://polimill.jp/20250926-5/	【セミナー開催】AI時代の行政人材�
 https://polimill.jp/20250929-1/	Polimill、第5回デジタル化・DX推進展（ODEX）＠大阪に出展します！
 https://polimill.jp/20250930-1/	行政DXの秋、関西2都市で同時展開！Polimill、大阪ODEXにつづき京都・地域×Tech関西に出展！
 https://polimill.jp/20250930-2/	【提案受付中】あなたの声が三重県の未来を変える！Surfvoteで県民提案予算14の事業案に対する意見を募集中！
+https://polimill.jp/20251002-1/	
 https://polimill.jp/20251002-1/	【自治体職員必見！】導入実績400超のQommonsAI、無料枠を1,000人に拡大―もはや使わない理由なし！
 https://polimill.jp/20251002-1/	自社サイト
 https://polimill.jp/20251009-1/	
@@ -325,6 +332,7 @@ https://polimill.jp/20251031-1/	最新LLM「Claude Sonnet 4.5」国内リージ�
 https://polimill.jp/20251105-1/	
 https://polimill.jp/20251105-1/	Polimill、正社員を倍増し自治体向け生成AI【QommonsAI】の全国展開を加速――年内600、2026年1,200自治体体制へ
 https://polimill.jp/20251105-1/	正社員を4名から倍増、2026年1,200自治体体制を宣言
+https://polimill.jp/20251105-1/	目標の発表
 https://polimill.jp/20251105-1/	自社サイト
 https://polimill.jp/20251105-2/	Polimill、QommonsAIで自治体の予算獲得と課題解決を支援。無料枠強化と2026年4月のLGWAN無料対応予定を発表
 https://polimill.jp/20251106-1/	デジタル民主主義プラットフォーム「Surfvote」月間60万PVを突破！
@@ -371,6 +379,7 @@ https://polimill.jp/20260105-4/	【テレビ報道紹介】北海道芽室町に
 https://polimill.jp/20260105-5/	【Polimill】2026年 新年のご挨拶 「のこしたいみらいをともにつくる」ためにー
 https://polimill.jp/20260105-6/	【報道機関向け神機能】全国1,700自治体の行政文書を、5秒で横断検索──調査報道の新しいインフラ「QommonsAI」を報道機関向けに提供開始
 https://polimill.jp/20260107-1/	【投票開始】急増するインバウンド観光客数、このままで大丈夫？2030年の受け入れ人数を考えよう
+https://polimill.jp/20260109-1/	
 https://polimill.jp/20260109-1/	「1,000人まで無料、使い放題」──650自治体が選んだ行政AI「QommonsAI」、利用上限なし・LGWAN追加料金なしの新料金を発表
 https://polimill.jp/20260109-1/	自社サイト
 https://polimill.jp/20260113-1/	【投票開始】あなたの街で「土葬墓地」ができるとしたら、どう思いますか？
@@ -380,6 +389,7 @@ https://polimill.jp/20260119-1/	2026.01.19 Qommons ONEの目標「2026年4月リ
 https://polimill.jp/20260119-1/	650自治体が選んだ行政AI「QommonsAI」のPolimill、シリーズAで総額6.35億円を調達
 https://polimill.jp/20260119-1/	シリーズAで約6.35億円を調達、評価額約50億円
 https://polimill.jp/20260119-1/	目標の出典
+https://polimill.jp/20260119-1/	自社サイト
 https://polimill.jp/20260121-1/	Polimill、コーポレートサイトをリニューアル！ – 新ミッション「のこしたいいみらいをともにつくる」を軸に内容を拡充
 https://polimill.jp/20260122-1/	【研修報告】石川県庁×Polimill「QommonsAI基礎研修」を開催
 https://polimill.jp/20260123-1/	【投票開始】物価対策はしているのに、なぜ生活は楽にならない？ー慶應義塾大学教授 白井さゆり氏が提起
@@ -392,6 +402,7 @@ https://polimill.jp/20260218-1/	【研修報告】神奈川県逗子市でQommon
 https://polimill.jp/20260219-1/	お守りのフリマサイト出品、どう考えるべきか？――信仰と流通のあり方を問う
 https://polimill.jp/20260220-1/	【研修報告】茨城県潮来市でQommonsAI研修を実施、議会対応や実務活用への関心高まる
 https://polimill.jp/20260224-1/	【QommonsAI】管理者機能を強化し、PowerPointファイルの直接読み込みに対応したver.2.2.1へアップデート
+https://polimill.jp/20260224-2/	
 https://polimill.jp/20260224-2/	〖速報〗導入自治体700目前の行政向け生成AI「QommonsAI」、Anthropic最上位モデル「Claude Opus 4.6」を“追加料金ではなく無料”標準搭載で自治体行政のAXを推進
 https://polimill.jp/20260224-2/	自社サイト
 https://polimill.jp/20260224-3/	【登壇のお知らせ】市町村アカデミーにてPolimill代表・谷口が講師を担当
@@ -402,6 +413,7 @@ https://polimill.jp/20260228-2/
 https://polimill.jp/20260228-2/	2026.02.28 学術論文を社会課題で再編する行政AX専門AI「洛索」を発表
 https://polimill.jp/20260228-2/	人類の学術知を「社会課題」で再編する── 行政AX専門AI「洛索（らくさく）」誕生 ──
 https://polimill.jp/20260228-2/	学術論文を社会課題で再編する行政AX専門AI「洛索」を発表
+https://polimill.jp/20260228-2/	自社サイト
 https://polimill.jp/20260306%e2%80%901/	【投票開始】AIは「感情的な対立」を減らせるのか？〈チームみらい〉安野貴博党首が語る“AIによる熟議支援”とデジタル民主主義
 https://polimill.jp/20260313-1/	【投票開始】東日本大震災から15年。義務教育に「防災科」は必要か？災害大国・日本の防災教育を考える
 https://polimill.jp/20260316-1/	QommonsAI活用研修を高知県宿毛市で実施——初ログイン約7割の職員が積極的にAIを体験、議会対応AIには「3月議会で使いたい」の声も
@@ -467,6 +479,7 @@ https://polimill.jp/20260527-1/	2026.05.27 新サービス「Qommons ONE」「Qo
 https://polimill.jp/20260527-1/	2026.05.27 新サービス初公開
 https://polimill.jp/20260527-1/	Polimill株式会社、「自治体・公共Week 2026」に出展——新サービス「Qommons ONE」「Qommons Qraft」「Quester」のデモ画面に来場者が釘づけ
 https://polimill.jp/20260527-1/	新サービス「Qommons ONE」「Qommons Qraft」「Quester」を初公開
+https://polimill.jp/20260527-1/	自社サイト
 https://polimill.jp/20260527-2/	QommonsAI活用研修を兵庫県芦屋市（あしやし）で実施——「デジタルが苦手」から「なくてはならない相棒」へ、職員の意識変革を後押し
 https://polimill.jp/20260528-1/	Polimill株式会社、北海道苫小牧市（とまこまいし）と地域のDX等に関する包括連携協定を締結——北海道初の協定自治体、生成AI教育支援モデルの構築と専用AI共同開発へ
 https://polimill.jp/20260529-1/	QommonsAI活用研修を千葉県東庄町（とうのしょうまち）で実施——「言語モデルを切り替えよう！」、受講者が自ら課題解決を導く能動的な活用へ進化
@@ -825,6 +838,7 @@ https://prtimes.jp/main/html/rd/p/000000418.000088829.html
 https://prtimes.jp/main/html/rd/p/000000418.000088829.html	AIの社会実装をリードするPolimill株式会社、約50の自治体・省庁へ本当にすごい生成AI「QommonsAI（コモンズAI）」プレビュー版をリリース！
 https://prtimes.jp/main/html/rd/p/000000418.000088829.html	PR TIMES（サイト未掲載期間の補完）
 https://prtimes.jp/main/html/rd/p/000000418.000088829.html	QommonsAIプレビュー版を約50の自治体・省庁に提供
+https://prtimes.jp/main/html/rd/p/000000418.000088829.html	約50の自治体・省庁（プレビュー版）
 https://prtimes.jp/main/html/rd/p/000000419.000088829.html	【オーバーツーリズム対策として「観光税」を導入すべきか？】Surfvoteで意見を募集しました
 https://prtimes.jp/main/html/rd/p/000000420.000088829.html	AIの社会実装をリードするPolimill（ポリミル）、約50の自治体・省庁が使っている本当にすごい生成AI「QommonsAI（コモンズAI）」プレビュー版に「QommonsAI Talk」を追加！
 https://prtimes.jp/main/html/rd/p/000000421.000088829.html	すごい生成AI「QommonsAI（コモンズAI）」を開発するPolimillがAI博覧会に出展します
@@ -845,6 +859,7 @@ https://prtimes.jp/main/html/rd/p/000000431.000088829.html	GovTechベンチャ�
 https://prtimes.jp/main/html/rd/p/000000432.000088829.html	現役大学生が生成AIについて講演！PolimillがGEN AI EXPO 2024に出展しました
 https://prtimes.jp/main/html/rd/p/000000433.000088829.html	GovTechベンチャーPolimill、大阪スマートシティパートナーズフォーラムで事業採択
 https://prtimes.jp/main/html/rd/p/000000435.000088829.html	
+https://prtimes.jp/main/html/rd/p/000000435.000088829.html	PR TIMES（サイト未掲載期間の補完）
 https://prtimes.jp/main/html/rd/p/000000435.000088829.html	プレシリーズAで調達、累計5億円超
 https://prtimes.jp/main/html/rd/p/000000435.000088829.html	行政用生成AI【コモンズAI】を多くの自治体に展開中のスタートアップPolimill社、プレシリーズAの新規調達実施で調達総額5億円超え 最大級の生成AI用行政文書ナレッジと学術文献ナレッジを構築へ
 https://prtimes.jp/main/html/rd/p/000000436.000088829.html	【市街地でのスケートボード滑走は取り締まるべきか？】Surfvoteで意見を募集
@@ -858,6 +873,7 @@ https://prtimes.jp/main/html/rd/p/000000444.000088829.html	【すごい生成AI�
 https://prtimes.jp/main/html/rd/p/000000445.000088829.html	導入した瞬間からいきなり使えるすごい生成AI【コモンズAI】がとてつもない量の情報をナレッジとして実装！約700の自治体の行政文書を網羅し、省庁や自治体の職員は爆速で業務効率化を実現！
 https://prtimes.jp/main/html/rd/p/000000446.000088829.html	【うつ病になるのは「心が弱いせい」という誤解、どうしたらなくせる？】Surfvoteで意見を募集しました
 https://prtimes.jp/main/html/rd/p/000000447.000088829.html	
+https://prtimes.jp/main/html/rd/p/000000447.000088829.html	PR TIMES（サイト未掲載期間の補完）
 https://prtimes.jp/main/html/rd/p/000000447.000088829.html	QommonsAIプロダクト版をリリース
 https://prtimes.jp/main/html/rd/p/000000447.000088829.html	省庁・自治体から大絶賛の「QommonsAI」ついにプロダクト版リリース！自治体業務を革新する生成AIの力で、効率化と住民サービス向上を加速！！
 https://prtimes.jp/main/html/rd/p/000000448.000088829.html	Polimillの生成AI「QommonsAI」、阪南市で実証実験を開始
@@ -899,6 +915,7 @@ https://prtimes.jp/main/html/rd/p/000000482.000088829.html	【全国初】住み
 https://prtimes.jp/main/html/rd/p/000000483.000088829.html	行政職員の救世主！コモンズAIの「住民の声」返信サポート機能で、迅速・正確な対応を実現
 https://prtimes.jp/main/html/rd/p/000000484.000088829.html	
 https://prtimes.jp/main/html/rd/p/000000484.000088829.html	【Polimill社】希望と革新の一年を共に
+https://prtimes.jp/main/html/rd/p/000000484.000088829.html	目標の発表
 https://prtimes.jp/main/html/rd/p/000000485.000088829.html	【自治体職員必見】2025年1月23日（木）無料オンラインセミナー開催決定！Polimillの生成AI「QommonsAI」導入から全庁展開までの舞台裏を一挙公開！
 https://prtimes.jp/main/html/rd/p/000000486.000088829.html	福岡県久山町がSurfvoteで全国のみなさんに質問！あなたの暮らしにとって「自然」と「都市」どちらが大事？Surfvoteで投票受付中。あなたの考えをみんなで共有し未来の暮らしを一緒に考えませんか？
 https://prtimes.jp/main/html/rd/p/000000487.000088829.html	【石破総理に求められる話術とは？】Surfvoteで意見を募集中
@@ -938,6 +955,7 @@ https://prtimes.jp/main/html/rd/p/000000517.000088829.html	【静岡県初!】�
 https://prtimes.jp/main/html/rd/p/000000520.000088829.html	
 https://prtimes.jp/main/html/rd/p/000000520.000088829.html	2025.06.02 デジタル庁の法制事務AI技術検証を受託
 https://prtimes.jp/main/html/rd/p/000000520.000088829.html	デジタル庁の法制事務AI技術検証を受託
+https://prtimes.jp/main/html/rd/p/000000525.000088829.html	
 https://prtimes.jp/main/html/rd/p/000000525.000088829.html	PR TIMES
 method/	データと方法
 method/	データと方法出典、テーマ分類、データファイルの説明。
