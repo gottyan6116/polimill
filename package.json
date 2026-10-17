@@ -1,0 +1,13 @@
+{
+  "name": "polimill-timeline",
+  "private": true,
+  "description": "Polimill 5-year timeline (static site). Node is only used for audit and screenshot scripts.",
+  "scripts": {
+    "audit:extract": "node audit/extract.mjs",
+    "audit:compare": "node audit/compare.mjs",
+    "check": "node audit/check-all.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.1"
+  }
+}
