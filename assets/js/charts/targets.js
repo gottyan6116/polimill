@@ -30,7 +30,7 @@
   }
 
   function renderQuestions() {
-    const { round10, monthsBetween } = PM;
+    const { round5, monthsBetween } = PM;
     const A = d => adoption.find(a => a.date === d);
     const p1 = A('2025-07-23'), p2 = A('2025-12-24'), p3 = lastAdopt;
     const r1 = (p2.municipalities - p1.municipalities) / (d3.timeDay.count(p1.t, p2.t) / 30.44);
@@ -39,8 +39,8 @@
     const sv2 = D.targets.find(t => t.item === 'Surfvote 2.0'), rep = ms('2025-05-14');
     const lastNews = d3.max(D.news, n => n.date);
     const Q = [
-      { c: 'est', q: '導入数の伸び（2025年下期 月約60 → 2026年前半 月約40）は鈍化か、定着重視への意図的な転換か。アクティブ率はどうか。',
-        s: `根拠：${fmtJ(p1.t)} ${p1.municipalities} → ${fmtJ(p2.t)} ${p2.municipalities}（${monthsBetween(p1, p2)}か月で+${p2.municipalities - p1.municipalities}、月約${round10(r1)}）、→ ${fmtJ(p3.t)} ${p3.municipalities}（${monthsBetween(p2, p3)}か月で+${p3.municipalities - p2.municipalities}、月約${round10(r2)}）。${ext(p1.url, '7月')}／${ext(p2.url, '12月')}／${ext(p3.url, '5月')}の発表値から単純計算。` },
+      { c: 'est', q: '導入数の伸び（2025年下期 月約60 → 2026年前半 月約45）は鈍化か、定着重視への意図的な転換か。アクティブ率はどうか。',
+        s: `根拠：${fmtJ(p1.t)} ${p1.municipalities} → ${fmtJ(p2.t)} ${p2.municipalities}（${monthsBetween(p1, p2)}か月で+${p2.municipalities - p1.municipalities}、月約${round5(r1)}）、→ ${fmtJ(p3.t)} ${p3.municipalities}（${monthsBetween(p2, p3)}か月で+${p3.municipalities - p2.municipalities}、月約${round5(r2)}）。${ext(p1.url, '7月')}／${ext(p2.url, '12月')}／${ext(p3.url, '5月')}の発表値から単純計算。` },
       { c: 'unk', q: '無料モデルの収益化：Qommons ONE など新製品群の提供状況と売上構成。',
         s: `根拠：Qommons ONEの目標「${esc(one.target)}」に対し、状況は「${esc(one.status)}」。${ext(launch.url, dot(launch.date) + ' 新サービス初公開')}` },
       { c: 'unk', q: '2026年6月以降、導入数の発表がない理由と最新値。',

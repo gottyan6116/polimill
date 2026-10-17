@@ -43,9 +43,9 @@
     el('method-calc').innerHTML = `
       <ol class="calc">
         <li><b>月あたりの導入ペース</b>${PM.conf('est')}
-          <p>（後の時点の導入自治体数 − 前の時点の導入自治体数）÷（2時点の間の日数 ÷ 30.44）。表示は10単位に丸める。</p>
-          <p class="src">${fmtJ(p1.t)} ${p1.municipalities} → ${fmtJ(p2.t)} ${p2.municipalities}：${d3.timeDay.count(p1.t, p2.t)}日（約${mo(p1, p2).toFixed(1)}か月）で+${p2.municipalities - p1.municipalities}、月${rate(p1, p2).toFixed(1)} → 月約${PM.round10(rate(p1, p2))}<br>
-          ${fmtJ(p2.t)} ${p2.municipalities} → ${fmtJ(p3.t)} ${p3.municipalities}：${d3.timeDay.count(p2.t, p3.t)}日（約${mo(p2, p3).toFixed(1)}か月）で+${p3.municipalities - p2.municipalities}、月${rate(p2, p3).toFixed(1)} → 月約${PM.round10(rate(p2, p3))}</p></li>
+          <p>（後の時点の導入自治体数 − 前の時点の導入自治体数）÷（2時点の間の日数 ÷ 30.44）。表示は5単位に丸める（例：59.3→約60、45.1→約45）。</p>
+          <p class="src">${fmtJ(p1.t)} ${p1.municipalities} → ${fmtJ(p2.t)} ${p2.municipalities}：${d3.timeDay.count(p1.t, p2.t)}日（約${mo(p1, p2).toFixed(1)}か月）で+${p2.municipalities - p1.municipalities}、月${rate(p1, p2).toFixed(1)} → 月約${PM.round5(rate(p1, p2))}<br>
+          ${fmtJ(p2.t)} ${p2.municipalities} → ${fmtJ(p3.t)} ${p3.municipalities}：${d3.timeDay.count(p2.t, p3.t)}日（約${mo(p2, p3).toFixed(1)}か月）で+${p3.municipalities - p2.municipalities}、月${rate(p2, p3).toFixed(1)} → 月約${PM.round5(rate(p2, p3))}</p></li>
         <li><b>倍率</b>${PM.conf('est')}
           <p>最新の導入自治体数 ÷ 最初の値。${nf(p3.municipalities)} ÷ ${first.municipalities} = ${Math.round(p3.municipalities / first.municipalities)}倍（${fmtJ(first.t)}〜${fmtJ(p3.t)}）。</p></li>
         <li><b>目標比</b>${PM.conf('est')}

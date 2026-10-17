@@ -89,6 +89,8 @@
   const adoption = PM.adoption = D.adoption.map(a => Object.assign({}, a, { t: parse(a.date) }));
   const lastAdopt = PM.lastAdopt = adoption[adoption.length - 1];
   PM.round10 = v => Math.round(v / 10) * 10;
+  // monthly adoption pace is shown rounded to the nearest 5 (59.3 -> 60, 45.1 -> 45)
+  PM.round5 = v => Math.round(v / 5) * 5;
   PM.monthsBetween = (a, b) => (d3.timeDay.count(a.t, b.t) / 30.44).toFixed(1);
   PM.yen = v => v >= 1e8 ? (v / 1e8) + '億' : (v / 1e4) + '万';
   PM.debounce = (fn, wait) => { let t; return () => { clearTimeout(t); t = setTimeout(fn, wait); }; };

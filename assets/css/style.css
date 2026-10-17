@@ -399,7 +399,7 @@ h1.msg { margin-top: 0; }
 }
 
 /* ---------- confidence labels (shape/line differ, not only colour) ---------- */
-.conf { display: inline-block; margin: 0 2px 0 6px; padding: 0 5px; font-size: 10px; line-height: 1.6; font-weight: 500; font-family: var(--sans);
+.conf { display: inline-block; margin: 0 6px 0 6px; padding: 0 5px; font-size: 10px; line-height: 1.6; font-weight: 500; font-family: var(--sans);
   color: var(--ink); text-decoration: none; vertical-align: 1px; white-space: nowrap; border: 1px solid var(--ink); letter-spacing: 0; }
 .conf-fact { background: var(--ink); color: var(--paper); }
 .conf-claim { border-style: solid; }

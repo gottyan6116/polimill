@@ -136,14 +136,14 @@
   }
 
   function renderZoomNotes() {
-    const { round10, monthsBetween } = PM;
+    const { round5, monthsBetween } = PM;
     el('zoom-notes').innerHTML = PM.ZOOM_NOTES.map(n => `
       <li data-date="${n.m.date}"><span class="k">${n.k}</span><span><span class="d">${fmtJ(n.t)}</span>${esc(n.m.headline)}${PM.srcIcon(n.m.url, n.m.source, PM.dot(n.m.date))}</span></li>`).join('');
     const a = adoption.find(d => d.date === '2024-11-30'), b = adoption.find(d => d.date === '2025-12-24');
     const p0 = adoption.find(d => d.date === '2025-07-23');
     const rate = (b.municipalities - p0.municipalities) / (d3.timeDay.count(p0.t, b.t) / 30.44);
     el('s05-body').innerHTML = `
-      <p>${fmtJ(a.t)}の${nf(a.municipalities)}から${fmtJ(b.t)}の${nf(b.municipalities)}へ、約1年で+${b.municipalities - a.municipalities}。伸びが急になるのは2025年7月以降で、${fmtYM(p0.t)}の${p0.municipalities}から${fmtYM(b.t)}の${b.municipalities}まで、月あたり約${round10(rate)}自治体のペース。${PM.fnRef('ch4', 1)}</p>
+      <p>${fmtJ(a.t)}の${nf(a.municipalities)}から${fmtJ(b.t)}の${nf(b.municipalities)}へ、約1年で+${b.municipalities - a.municipalities}。伸びが急になるのは2025年7月以降で、${fmtYM(p0.t)}の${p0.municipalities}から${fmtYM(b.t)}の${b.municipalities}まで、月あたり約${round5(rate)}自治体のペース。${PM.fnRef('ch4', 1)}</p>
       <p>同じ時期に、自治体が導入判断で求める認証（ISO 27001／ISO 9001／Pマーク）を取り、正社員を倍増させ、ミッションを言語化し、LGWAN接続料の無償化を宣言した。拡大の速度に、組織と信頼の整備を後から追いつかせている。</p>
       ${PM.footnotes('ch4', [`${PM.conf('est')}+${b.municipalities - p0.municipalities}を約${monthsBetween(p0, b)}か月で。発表値からの単純計算。計算方法は<a href="${PM.href('method/#sec-calc')}">データと方法</a>に記載。`])}`;
   }
